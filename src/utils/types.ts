@@ -1,5 +1,5 @@
 export interface Participant {
-  id: number;
+  id: string;
   firstname: string;
   lastname: string;
   phone: string;
@@ -9,8 +9,9 @@ export interface Participant {
   sfcRole: string;
   coupleCoordinators: string;
   origin: string;
-  destination: string;
   arrivalDateTime: string;
+  destination: string;
+  departureDateTime: string;
   accommodationNeeded: boolean | string;
   fieldOfWork: string;
   shirtSize: string;

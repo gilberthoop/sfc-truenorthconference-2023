@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.registration {
+  margin: auto;
+
+  @media screen and (min-width: 960px) {
+    width: 680px;
+  }
+}
+
+.registration__heading {
+  color: #fff;
+}
+
+.registration__form {
+  background-color: white;
+  padding: 30px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 600px) {
+    padding: 25px 70px;
+  }
+
+  @apply shadow-md rounded
+}
+
+.registration__form-field {
+  @media screen and (min-width: 600px) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.registration__form-field--block {
+  margin-bottom: 12px;
+}
+
+.registration__form-field div {
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 100%;
+
+  @media screen and (min-width: 600px) {
+    width: auto;
+  }
+}
+
+.registration__form-field--full div,
+.registration__form-field--full input {
+  width: 100%;
+}
+
+.registration__form-label {
+  @apply block text-gray-700 font-bold mb-2;
+}
+
+.registration__form-input {
+  width: 100%;
+
+  @media screen and (min-width: 600px) {
+    width: 250px;
+  }
+
+  @apply shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
+}
+
+.registration__form-input--short {
+  /* @media screen and (min-width: 600px) {
+    width: 150px;
+  } */
+}
+
+.registration__form-select {
+  width: 100%;
+
+  @media screen and (min-width: 600px) {
+    width: 250px;
+  }
+
+  @apply shadow border rounded py-2 px-3 text-gray-700 leading-tight;
+}
+
+.registration__form-calendar {
+  width: 100%;
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
+
+.registration__submit-btn {
+  background-color: #3e83b3;
+  color: white;
+
+  @apply h-12 w-full sm:w-2/4;
+  @apply mt-4 shadow appearance-none border rounded py-2 px-3 leading-tight;
+}
+
+.required {
+  color: #3e83b3;
+}
+
+.form-validation {
+  color: red;
+  text-align: center;
+  padding-top: 20px;
+}
