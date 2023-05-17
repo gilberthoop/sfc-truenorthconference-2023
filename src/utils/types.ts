@@ -17,5 +17,5 @@ export interface Participant {
   shirtSize: string;
   allergies: string;
   emergencyContact: string;
-  mediaConsent: boolean | string;
+  mediaConsent: boolean;
 }
