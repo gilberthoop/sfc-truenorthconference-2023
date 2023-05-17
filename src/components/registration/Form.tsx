@@ -582,7 +582,7 @@ function Form() {
               moving) and/or your spoken words in perpetuity for educational
               purposes.
             </p>
-            <ol className="mt-2 pl-12 pr-4">
+            <ol className="mt-2 pr-4 pl-8 sm:pl-12">
               <li>
                 To allow the recording of your image and voice (e.g.,
                 photographs, audio, or video).
@@ -600,8 +600,8 @@ function Form() {
                 your photograph or video or recording.
               </li>
             </ol>
-            <label>
-              <p className="text-center pt-4">
+            <div className="registration__form-consent">
+              <p className="text-center">
                 I hereby grant my consent as described above.
               </p>
               <input
@@ -610,9 +610,8 @@ function Form() {
                 name="mediaConsent"
                 checked={formState.mediaConsent}
                 onChange={handleCheckboxInputChange}
-                className="w-4 h-4"
               />
-            </label>
+            </div>
           </div>
         </div>
 
