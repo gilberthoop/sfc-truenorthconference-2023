@@ -9,7 +9,9 @@ export default function Home() {
       </Head>
       <header className="registration__heading text-center pt-10 pb-5">
         <h1 className="text-5xl pb-4">Register</h1>
-        <p className="text-base">Join SFC Canada's biggest event in 2023.</p>
+        <p className="text-base">
+          Join SFC Canada&apos;s biggest event in 2023.
+        </p>
       </header>
       <Form />
     </main>
