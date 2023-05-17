@@ -1,0 +1,16 @@
+.thankyou__main {
+  color: white;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.thankyou__main h1 {
+  font-size: 60px;
+}
+
+.thankyou__main p {
+  font-size: 35px;
+}
