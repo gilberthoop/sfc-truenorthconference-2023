@@ -19,5 +19,5 @@
 body {
   color: #374151;
   background-image: url('../assets/tnc-blue-gradient.png');
-  background-size: cover;
+  background-size: auto;
 }

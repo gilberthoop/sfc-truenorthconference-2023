@@ -43,8 +43,17 @@ function Form() {
   function handleInputChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
-    const { name, value, type, checked } = event.target;
+    const { name, value } = event.target;
 
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  }
+  function handleCheckboxInputChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const { name, value, type, checked } = event.target;
     const inputValue = type === "checkbox" ? checked : value;
     setFormState((prevState) => ({
       ...prevState,
@@ -600,7 +609,7 @@ function Form() {
                 id="mediaConsent"
                 name="mediaConsent"
                 checked={formState.mediaConsent}
-                onChange={handleInputChange}
+                onChange={handleCheckboxInputChange}
                 className="w-4 h-4"
               />
             </label>
