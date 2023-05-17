@@ -40,11 +40,21 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handlePost(req: NextApiRequest, res: NextApiResponse) {
+  const { email, ...rest } = req.body;
   const client = new MongoClient(uri);
+
   try {
     await client.connect();
     const database = client.db("sfctnc2023");
     const collection = database.collection("participants");
+
+    // Check for duplicates
+    const existingRegistration = await collection.findOne({ email });
+    if (existingRegistration) {
+      return res
+        .status(400)
+        .json({ message: "You are already registered under the same email." });
+    }
 
     const newRegistration: Participant = {
       ...req.body,
@@ -55,7 +65,9 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
     res.status(201).json(newRegistration);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res
+      .status(500)
+      .json({ message: "Sorry, we are unable to process your request." });
   } finally {
     await client.close();
   }
