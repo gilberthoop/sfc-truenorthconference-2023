@@ -30,7 +30,6 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
     const database = client.db("sfctnc2023");
     const collection = database.collection("participants");
     const registrations = await collection.find().toArray();
-    console.log(await collection.find().toArray());
     res.status(200).json(registrations);
   } catch (error) {
     console.error(error);
@@ -62,30 +61,25 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-function handleDelete(req: NextApiRequest, res: NextApiResponse) {
+async function handleDelete(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
+  const client = new MongoClient(uri);
   try {
-    const registrations = readRegistrationsFile();
-    const index = registrations.findIndex(
-      (registration: Participant) => registration.id === id
-    );
-    if (index !== -1) {
-      const deletedRegistration = registrations.splice(index, 1)[0];
-      writeRegistrationsFile(registrations);
-      res.status(200).json(deletedRegistration);
+    await client.connect();
+    const database = client.db("sfctnc2023");
+    const collection = database.collection("participants");
+
+    const deleteResult = await collection.findOneAndDelete({ id });
+
+    if (deleteResult.value) {
+      res.status(200).json(deleteResult.value);
     } else {
       res.status(404).json({ message: "Participant not found" });
     }
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Internal server error" });
+  } finally {
+    await client.close();
   }
-}
-
-function readRegistrationsFile() {
-  const fileContents = fs.readFileSync(FILE_PATH, "utf8");
-  return JSON.parse(fileContents);
-}
-
-function writeRegistrationsFile(registrations: any) {
-  fs.writeFileSync(FILE_PATH, JSON.stringify(registrations, null, 2));
 }
