@@ -1,15 +1,10 @@
-import { useState } from "react";
-import { useRouter, Router } from "next/router";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { Participant } from "../../utils/types";
-import {
-  REGIONS,
-  AREALIST,
-  MEMBERSHIP_ROLE,
-  MONTHS,
-} from "../../utils/global-values";
+import { REGIONS, AREALIST, MEMBERSHIP_ROLE } from "../../utils/global-values";
 
 function Form() {
   // Form fields
@@ -21,13 +16,13 @@ function Form() {
     email: "",
     region: "",
     area: "",
-    sfcRole: "",
+    sfcRole: "SFC+",
     coupleCoordinators: "",
     origin: "",
     arrivalDateTime: "",
     destination: "",
     departureDateTime: "",
-    accommodationNeeded: false,
+    accommodationNeeded: "No",
     fieldOfWork: "",
     shirtSize: "",
     allergies: "",
@@ -46,14 +41,14 @@ function Form() {
 
   // Form input handler
   function handleInputChange(
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
+
+    const inputValue = type === "checkbox" ? checked : value;
     setFormState((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: inputValue,
     }));
   }
 
@@ -82,14 +77,14 @@ function Form() {
     const validationErrors: string[] = [];
     if (
       needsRideOnArrival &&
-      (formState.arrivalDateTime.includes("undefined") ||
+      (formState.arrivalDateTime.includes("Invalid Date") ||
         formState.arrivalDateTime.length === 0)
     ) {
       validationErrors.push("Arrival date and time are required");
     }
     if (
       needsRideOnDeparture &&
-      (formState.departureDateTime.includes("undefined") ||
+      (formState.departureDateTime.includes("Invalid Date") ||
         formState.departureDateTime.length === 0)
     ) {
       validationErrors.push("Departure date and time are required");
@@ -103,6 +98,10 @@ function Form() {
   }
 
   const router = useRouter();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [router]);
+
   async function registerClient(params: Participant) {
     try {
       await fetch("/api/registrations", {
@@ -122,25 +121,25 @@ function Form() {
   }
 
   function handleDateTimeParsing(date: Date): string {
-    const month = MONTHS[date.getMonth()];
-    let hours = date.getHours();
-    const amOrPm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12;
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    const fullDate = `${month} ${date.getDate()}, ${date.getFullYear()}`;
-    const time = `${hours}:${minutes} ${amOrPm}`;
-    const arrivalDateAndTime = `${fullDate}. ${time}`;
-
-    return arrivalDateAndTime;
+    return date.toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
   }
 
   function onArrivalDateTimeChange(dateValue: any) {
     try {
-      const arrivalDateTime = handleDateTimeParsing(dateValue.toDate());
-      setFormState((prevState) => ({
-        ...prevState,
-        arrivalDateTime,
-      }));
+      if (dateValue && dateValue.toDate()) {
+        const arrivalDateTime = handleDateTimeParsing(dateValue.toDate());
+        setFormState((prevState) => ({
+          ...prevState,
+          arrivalDateTime,
+        }));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -148,11 +147,13 @@ function Form() {
 
   function onDepartureDateTimeChange(dateValue: any) {
     try {
-      const departureDateTime = handleDateTimeParsing(dateValue.toDate());
-      setFormState((prevState) => ({
-        ...prevState,
-        departureDateTime,
-      }));
+      if (dateValue && dateValue.toDate()) {
+        const departureDateTime = handleDateTimeParsing(dateValue.toDate());
+        setFormState((prevState) => ({
+          ...prevState,
+          departureDateTime,
+        }));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -458,6 +459,153 @@ function Form() {
             </div>
           )}
         </section>
+
+        <div className="registration__form-field">
+          <div>
+            <p className="pb-2">
+              Will you need accommodation?<span className="required"> *</span>
+            </p>
+            <label className="px-4">
+              <input
+                type="radio"
+                name="accommodationNeeded"
+                value="Yes"
+                checked={formState.accommodationNeeded === "Yes"}
+                onChange={handleInputChange}
+                className=""
+                required
+              />
+              Yes
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="accommodationNeeded"
+                value="No"
+                checked={formState.accommodationNeeded === "No"}
+                onChange={handleInputChange}
+                className=""
+              />
+              No
+            </label>
+          </div>
+          <div>
+            <label htmlFor="fieldOfWork" className="registration__form-label">
+              Field of work:<span className="required"> *</span>
+            </label>
+            <input
+              type="text"
+              id="fieldOfWork"
+              name="fieldOfWork"
+              value={formState.fieldOfWork}
+              onChange={handleInputChange}
+              className="registration__form-input focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="registration__form-field">
+          <div>
+            <label htmlFor="allergies" className="registration__form-label">
+              Allergies:<span className="required"> *</span>
+            </label>
+            <input
+              type="text"
+              id="allergies"
+              name="allergies"
+              value={formState.allergies}
+              onChange={handleInputChange}
+              className="registration__form-input focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="shirtSize" className="registration__form-label">
+              Shirt size if you would like to order:
+            </label>
+            <select
+              name="shirtSize"
+              id="shirtSize"
+              value={formState.shirtSize}
+              onChange={handleInputChange}
+              className="registration__form-select"
+            >
+              <option value=""></option>
+              <option value="XS">Extra Small</option>
+              <option value="S">Small</option>
+              <option value="M">Medium</option>
+              <option value="L">Large</option>
+              <option value="XL">Extra Large</option>
+              <option value="2XL">Double Extra Large</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="registration__form-field registration__form-field--full">
+          <div>
+            <label
+              htmlFor="emergencyContact"
+              className="registration__form-label"
+            >
+              Emergency Contact Information:<span className="required"> *</span>
+            </label>
+            <input
+              type="text"
+              name="emergencyContact"
+              id="emergencyContact"
+              value={formState.emergencyContact}
+              onChange={handleInputChange}
+              className="registration__form-select"
+              placeholder="Name and Phone number"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="registration__form-field registration__form-field--full">
+          <div className="pt-2">
+            <p className="text-center font-bold">
+              Photography and Video Consent
+            </p>
+            <p>
+              This authorization grants permission to use your image (still or
+              moving) and/or your spoken words in perpetuity for educational
+              purposes.
+            </p>
+            <ol className="mt-2 pl-12 pr-4">
+              <li>
+                To allow the recording of your image and voice (e.g.,
+                photographs, audio, or video).
+              </li>
+              <li>
+                To distribute your image or recording in any medium, be it print
+                or electronic form, which may include the Internet.
+              </li>
+              <li>
+                To grant permission to other entities to reproduce the images or
+                recording for educational purposes.
+              </li>
+              <li>
+                That there is no reimbursement for the right to take, or to use
+                your photograph or video or recording.
+              </li>
+            </ol>
+            <label>
+              <p className="text-center pt-4">
+                I hereby grant my consent as described above.
+              </p>
+              <input
+                type="checkbox"
+                id="mediaConsent"
+                name="mediaConsent"
+                checked={formState.mediaConsent}
+                onChange={handleInputChange}
+                className="w-4 h-4"
+              />
+            </label>
+          </div>
+        </div>
 
         <div className="flex items-center justify-center">
           <button
