@@ -119,6 +119,10 @@ ol {
   list-style: decimal;
 }
 
+.spinner {
+  background-color: rgba(62, 131, 179, 0.4)
+}
+
 @media screen and (min-width: 720px) {
   .registration__form {
     padding: 35px 70px;

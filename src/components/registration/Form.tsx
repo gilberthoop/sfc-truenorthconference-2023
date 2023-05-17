@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
@@ -38,6 +39,9 @@ function Form() {
 
   // Input validation output
   const [errors, setErrors] = useState<string[]>([]);
+
+  // Loading states
+  const [loading, setLoading] = useState(false);
 
   // Form input handler
   function handleInputChange(
@@ -80,7 +84,7 @@ function Form() {
     }
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const validationErrors: string[] = [];
@@ -102,7 +106,9 @@ function Form() {
     if (validationErrors.length > 0) {
       setErrors(validationErrors);
     } else {
-      registerClient(formState);
+      setLoading(true);
+      await registerClient(formState);
+      setLoading(false);
     }
   }
 
@@ -113,7 +119,7 @@ function Form() {
 
   async function registerClient(params: Participant) {
     try {
-      await fetch("/api/registrations", {
+      const response = await fetch("/api/registrations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -121,9 +127,15 @@ function Form() {
         body: JSON.stringify(params),
       });
 
-      setFormState(initialFormState);
-      setErrors([]);
-      router.push("/thank-you");
+      if (response.ok) {
+        setFormState(initialFormState);
+        setErrors([]);
+        router.push("/thank-you");
+      } else {
+        const errorMessage = await response.json();
+        const errors = [errorMessage.message];
+        setErrors(errors);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -618,9 +630,12 @@ function Form() {
         <div className="flex items-center justify-center">
           <button
             type="submit"
-            className="registration__submit-btn rounded focus:outline-none focus:shadow-outline"
+            className={`registration__submit-btn rounded focus:outline-none focus:shadow-outline ${
+              loading ? "spinner" : ""
+            }`}
+            disabled={loading}
           >
-            Register
+            {loading ? <CircularProgress size={24} /> : "Register"}
           </button>
         </div>
 
