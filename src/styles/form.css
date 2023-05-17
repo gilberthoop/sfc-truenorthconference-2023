@@ -19,18 +19,7 @@
   padding: 30px;
   margin-bottom: 20px;
 
-  @media screen and (min-width: 600px) {
-    padding: 35px 70px;
-  }
-
   @apply shadow-md rounded
-}
-
-.registration__form-field {
-  @media screen and (min-width: 600px) {
-    display: flex;
-    justify-content: space-between;
-  }
 }
 
 .registration__form-field--block {
@@ -41,10 +30,10 @@
   display: inline-block;
   margin-bottom: 20px;
   width: 100%;
+}
 
-  @media screen and (min-width: 600px) {
-    width: auto;
-  }
+.registration__form-field--full {
+  margin-bottom: 20px;
 }
 
 .registration__form-field--full div,
@@ -58,27 +47,11 @@
 
 .registration__form-input {
   width: 100%;
-
-  @media screen and (min-width: 600px) {
-    width: 250px;
-  }
-
   @apply shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
-}
-
-.registration__form-input--short {
-  /* @media screen and (min-width: 600px) {
-    width: 150px;
-  } */
 }
 
 .registration__form-select {
   width: 100%;
-
-  @media screen and (min-width: 600px) {
-    width: 250px;
-  }
-
   @apply shadow border rounded py-2 px-3 text-gray-700 leading-tight;
 }
 
@@ -129,4 +102,33 @@ input[type="radio"], input[type="checkbox"] {
 
 ol {
   list-style: decimal;
+}
+
+@media screen and (min-width: 600px) {
+  .registration__form {
+    padding: 35px 70px;
+  }
+
+  .registration__form-field {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .registration__form-field div {
+    width: auto;
+  }
+
+  .registration__form-input {
+    width: 250px;
+  }
+
+  .registration__form-select {
+    width: 250px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .registration {
+    width: 680px;
+  }
 }

@@ -290,7 +290,7 @@ function Form() {
           {formState.region === "SFC+" && (
             <div>
               <label htmlFor="area" className="registration__form-label">
-                City:<span className="required"> *</span>
+                City and Province/State:<span className="required"> *</span>
               </label>
               <input
                 type="text"
@@ -306,7 +306,7 @@ function Form() {
           {formState.region === "Other" && (
             <div>
               <label htmlFor="area" className="registration__form-label">
-                City:<span className="required"> *</span>
+                City and Province/State:<span className="required"> *</span>
               </label>
               <input
                 type="text"
@@ -391,7 +391,7 @@ function Form() {
                   />
                 </LocalizationProvider>
               </div>
-              <div className="registration__form-field registration__form-field--full">
+              <div className="registration__form-field--full">
                 <div>
                   <label htmlFor="origin" className="registration__form-label">
                     Origin:<span className="required"> *</span>
@@ -437,7 +437,7 @@ function Form() {
                   />
                 </LocalizationProvider>
               </div>
-              <div className="registration__form-field registration__form-field--full">
+              <div className="registration__form-field--full">
                 <div>
                   <label
                     htmlFor="destination"
@@ -505,7 +505,7 @@ function Form() {
           </div>
         </div>
 
-        <div className="registration__form-field">
+        <div className="registration__form-field pt-1">
           <div>
             <label htmlFor="allergies" className="registration__form-label">
               Allergies:<span className="required"> *</span>
@@ -542,7 +542,7 @@ function Form() {
           </div>
         </div>
 
-        <div className="registration__form-field registration__form-field--full">
+        <div className="registration__form-field--full pt-1">
           <div>
             <label
               htmlFor="emergencyContact"
