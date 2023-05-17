@@ -8,8 +8,6 @@ export const REGIONS = [
   { text: "Mountain (AB, NWT)", value: "Mountain (AB, NWT)" },
   { text: "Pacific (BC, YT)", value: "Pacific (BC, YT)" },
   { text: "International", value: "International" },
-  { text: "Other", value: "Other" },
-  { text: "I am not an SFC member", value: "SFC+" },
 ];
 
 export const AREALIST = [
