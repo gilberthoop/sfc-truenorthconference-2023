@@ -1,3 +1,4 @@
+import { MongoClient, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import path from "path";
@@ -5,6 +6,8 @@ import { Participant } from "../../utils/types";
 
 const FILENAME = "participants.json";
 const FILE_PATH = path.join(process.cwd(), "src", "data", FILENAME);
+const uri =
+  "mongodb+srv://williamgilbertgo:005XIAV3r@cluster0.uaysdod.mongodb.net/sfctnc2023?retryWrites=true&w=majority";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (req: NextApiRequest, res: NextApiResponse) => {
@@ -20,19 +23,43 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-function handleGet(req: NextApiRequest, res: NextApiResponse) {
-  const registrations = readRegistrationsFile();
-  res.status(200).json(registrations);
+async function handleGet(req: NextApiRequest, res: NextApiResponse) {
+  const client = new MongoClient(uri);
+  try {
+    await client.connect();
+    const database = client.db("sfctnc2023");
+    const collection = database.collection("participants");
+    const registrations = await collection.find().toArray();
+    console.log(await collection.find().toArray());
+    res.status(200).json(registrations);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  } finally {
+    await client.close();
+  }
 }
 
-function handlePost(req: NextApiRequest, res: NextApiResponse) {
-  const registrations = readRegistrationsFile();
-  const newRegistration: Participant = {
-    ...req.body,
-  };
-  registrations.push(newRegistration);
-  writeRegistrationsFile(registrations);
-  res.status(201).json(newRegistration);
+async function handlePost(req: NextApiRequest, res: NextApiResponse) {
+  const client = new MongoClient(uri);
+  try {
+    await client.connect();
+    const database = client.db("sfctnc2023");
+    const collection = database.collection("participants");
+
+    const newRegistration: Participant = {
+      ...req.body,
+      _id: new ObjectId().toString(),
+    };
+
+    await collection.insertOne(newRegistration);
+    res.status(201).json(newRegistration);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  } finally {
+    await client.close();
+  }
 }
 
 function handleDelete(req: NextApiRequest, res: NextApiResponse) {
