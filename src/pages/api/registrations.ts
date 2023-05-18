@@ -1,13 +1,10 @@
+import { config } from "dotenv";
 import { MongoClient, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
-import path from "path";
 import { Participant } from "../../utils/types";
 
-const FILENAME = "participants.json";
-const FILE_PATH = path.join(process.cwd(), "src", "data", FILENAME);
-const uri =
-  "mongodb+srv://williamgilbertgo:005XIAV3r@cluster0.uaysdod.mongodb.net/sfctnc2023?retryWrites=true&w=majority";
+config();
+const uri = process.env.MONGODB_URI || "";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (req: NextApiRequest, res: NextApiResponse) => {
