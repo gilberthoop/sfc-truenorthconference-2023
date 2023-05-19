@@ -201,6 +201,12 @@ function Form() {
   return (
     <div className="registration">
       <form onSubmit={handleSubmit} className="registration__form">
+        <header className="registration__header text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl pb-4">Register</h1>
+          <p className="text-base">
+            Join SFC Canada&apos;s biggest event in 2023.
+          </p>
+        </header>
         <div className="registration__form-field">
           <div>
             <label htmlFor="firstname" className="registration__form-label">
