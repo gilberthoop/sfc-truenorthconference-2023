@@ -6,6 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { Participant } from "../../utils/types";
 import { REGIONS, AREALIST, MEMBERSHIP_ROLE } from "../../utils/global-values";
+import { sanitizeInput } from "../../utils/input-validation";
 
 function Form() {
   // Form fields
@@ -48,10 +49,11 @@ function Form() {
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
     const { name, value } = event.target;
+    const sanitizedInput = sanitizeInput(value, name);
 
     setFormState((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: sanitizedInput,
     }));
   }
   function handleCheckboxInputChange(
