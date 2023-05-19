@@ -10,14 +10,22 @@
   }
 }
 
-.registration__heading {
-  color: #fff;
+.registration__header {
+  color: black;
+  padding-bottom: 30px;
+}
+
+.registration__header-img {
+  height: auto;
+  width: calc(100% + 50px);
+  margin-left: -30px;
 }
 
 .registration__form {
   background-color: white;
   padding: 30px;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 0;
 
   @apply shadow-md rounded
 }
@@ -124,8 +132,15 @@ ol {
 }
 
 @media screen and (min-width: 720px) {
+  .registration__header-img {
+    width: calc(100% + 65px);
+    margin-left: -35px;
+  }
+
   .registration__form {
     padding: 35px 70px;
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 
   .registration__form-field {
@@ -159,5 +174,9 @@ ol {
 @media screen and (min-width: 960px) {
   .registration {
     width: 680px;
+  }
+
+  .registration__form {
+    margin-top: 40px;
   }
 }
