@@ -79,8 +79,8 @@
 }
 
 .registration__form-consent input {
-  width: 16px !important;
-  height: 16px;
+  width: 1.5rem !important;
+  height: 1.5rem;
   margin: 10px 8px 0;
 }
 
@@ -157,6 +157,8 @@ ol {
   }
 
   .registration__form-consent input {
+    width: 1.2rem !important;
+    height: 1.2rem;
     margin-top: 0;
   }
 }

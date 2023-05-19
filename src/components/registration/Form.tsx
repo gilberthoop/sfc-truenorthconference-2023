@@ -398,13 +398,13 @@ function Form() {
           <div>
             <label className="flex justify-items-center">
               <span className="pr-2 mb-4">
-                Do you need transportation upon your arrival?
+                Do you need transportation upon your arrival (EST timezone)?
               </span>
               <input
                 type="checkbox"
                 checked={needsRideOnArrival}
                 onChange={handleArrivalTransportation}
-                className="w-4 h-4"
+                className="w-8 h-8 sm:w-4 sm:h-4"
               />
             </label>
           </div>
@@ -444,13 +444,13 @@ function Form() {
           <div>
             <label className="flex justify-items-center">
               <span className="pr-2 mb-4">
-                Do you need transportation upon your departure?
+                Do you need transportation upon your departure (EST timezone)?
               </span>
               <input
                 type="checkbox"
                 checked={needsRideOnDeparture}
                 onChange={handleDepartureTransportation}
-                className="w-4 h-4"
+                className="w-8 h-8 sm:w-4 sm:h-4"
               />
             </label>
           </div>
