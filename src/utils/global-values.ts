@@ -49,3 +49,23 @@ export const MONTHS = [
   "November",
   "December",
 ];
+
+export const TABLE_HEADERS = [
+  "#",
+  "First Name",
+  "Last Name",
+  "Phone",
+  "Email",
+  "Region",
+  "Area",
+  "SFC Role",
+  "Couple Coordinators",
+  "Arrival Details",
+  "Departure Details",
+  "Needs accommodation",
+  "Field of Work",
+  "Shirt Size",
+  "Allergies",
+  "Emergency Contact",
+  "Media Consent",
+];
