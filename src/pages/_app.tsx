@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../styles/globals.css";
 import "../styles/registration.css";
 import "../styles/thankyou.css";
+import "../styles/list.css";
 
 const outfit = Outfit({
   weight: "400",

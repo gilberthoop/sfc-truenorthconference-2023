@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import * as XLSX from "xlsx";
 import { Participant } from "../../utils/types";
+import { TABLE_HEADERS } from "@/utils/global-values";
 
 function RegistrationList() {
   const [participants, setParticipants] = useState<Participant[]>([]);
@@ -15,44 +17,53 @@ function RegistrationList() {
     fetchParticipants();
   }, []);
 
-  const headers = [
-    "#",
-    "First Name",
-    "Last Name",
-    "Phone",
-    "Email",
-    "Region",
-    "Area",
-    "SFC Role",
-    "Couple Coordinators",
-    "Arrival Details",
-    "Departure Details",
-    "Needs accommodation",
-    "Field of Work",
-    "Shirt Size",
-    "Allergies",
-    "Emergency Contact",
-    "Media Consent",
+  // Table information
+  const headers = TABLE_HEADERS;
+  const columns: GridColDef[] = [
+    { field: "id", headerName: "#", width: 60 },
+    { field: "firstname", headerName: "First name", width: 140 },
+    { field: "lastname", headerName: "Last name", width: 130 },
+    { field: "phone", headerName: "Phone", width: 140 },
+    { field: "email", headerName: "Email", width: 240 },
+    { field: "region", headerName: "Region", width: 170 },
+    { field: "area", headerName: "Area", width: 240 },
+    { field: "sfcRole", headerName: "SFC Role", width: 240 },
+    {
+      field: "coupleCoordinators",
+      headerName: "Couple Coordinators",
+      width: 200,
+    },
+    { field: "arrivalDetails", headerName: "Arrival Details", width: 380 },
+    { field: "departureDetails", headerName: "Departure Details", width: 380 },
+    {
+      field: "needsAccommodation",
+      headerName: "Needs Accommodation",
+      width: 180,
+    },
+    { field: "fieldOfWork", headerName: "Field of Work", width: 150 },
+    { field: "shirtSize", headerName: "Shirt Size", width: 100 },
+    { field: "allergies", headerName: "Allergies", width: 160 },
+    { field: "emergencyContact", headerName: "Emergency Contact", width: 240 },
+    { field: "mediaConsent", headerName: "Media Consent", width: 130 },
   ];
-
   const tableData = participants.map((participant, index) => ({
-    "#": index + 1,
-    "First name": participant.firstname,
-    "Last name": participant.lastname,
-    Phone: participant.phone,
-    Email: participant.email,
-    Region: participant.region,
-    Area: participant.area,
-    "SFC Role": participant.sfcRole,
-    "Couple Coordinators": participant.coupleCoordinators,
-    "Arrival Details": `${participant.origin}\n${participant.arrivalDateTime}`,
-    "Departure Details": `${participant.destination}\n${participant.departureDateTime}`,
-    "Needs accommodation": participant.accommodationNeeded,
-    "Field of Work": participant.fieldOfWork,
-    "Shirt Size": participant.shirtSize,
-    Allergies: participant.allergies,
-    "Emergency Contact": participant.emergencyContact,
-    "Media Consent": participant.mediaConsent ? "Yes" : "No",
+    id: index + 1,
+    firstname: participant.firstname,
+    lastname: participant.lastname,
+    phone: participant.phone,
+    email: participant.email,
+    region: participant.region,
+    area: participant.area,
+    sfcRole: participant.sfcRole,
+    coupleCoordinators: participant.coupleCoordinators,
+    arrivalDetails: `${participant.origin} ${participant.arrivalDateTime}`,
+    departureDetails: `${participant.destination} ${participant.departureDateTime}`,
+    needsAccommodation: participant.accommodationNeeded,
+    fieldOfWork: participant.fieldOfWork,
+    shirtSize: participant.shirtSize,
+    allergies: participant.allergies,
+    emergencyContact: participant.emergencyContact,
+    mediaConsent: participant.mediaConsent ? "Yes" : "No",
   }));
 
   function exportToExcel() {
@@ -76,34 +87,19 @@ function RegistrationList() {
       >
         Export to Excel
       </button>
-      <table className="mt-8 w-full divide-y divide-gray-200">
-        <thead className="bg-gray-500">
-          <tr>
-            {headers.map((header, index) => (
-              <th
-                key={index}
-                className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {tableData.map((data, index) => (
-            <tr key={index}>
-              {Object.values(data).map((cell, index) => (
-                <td
-                  key={index}
-                  className="px-6 py-4 whitespace-nowrap text-sm text-black"
-                >
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      <DataGrid
+        rows={tableData}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 25 },
+          },
+        }}
+        pageSizeOptions={[25, 50, 75, 100]}
+        checkboxSelection
+        className="list"
+      />
     </div>
   );
 }
