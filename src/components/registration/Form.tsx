@@ -423,7 +423,7 @@ function Form() {
               <div className="registration__form-field--full">
                 <div>
                   <label htmlFor="origin" className="registration__form-label">
-                    Origin:<span className="required"> *</span>
+                    Pickup place/address:<span className="required"> *</span>
                   </label>
                   <input
                     type="text"
@@ -472,7 +472,7 @@ function Form() {
                     htmlFor="destination"
                     className="registration__form-label"
                   >
-                    Destination:<span className="required"> *</span>
+                    Drop off place/address:<span className="required"> *</span>
                   </label>
                   <input
                     type="text"
