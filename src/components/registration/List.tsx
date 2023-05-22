@@ -40,7 +40,7 @@ function RegistrationList() {
       headerName: "Needs Accommodation",
       width: 180,
     },
-    { field: "fieldOfWork", headerName: "Field of Work", width: 150 },
+    { field: "fieldOfWork", headerName: "Field of Work", width: 320 },
     { field: "shirtSize", headerName: "Shirt Size", width: 100 },
     { field: "allergies", headerName: "Allergies", width: 160 },
     { field: "emergencyContact", headerName: "Emergency Contact", width: 240 },
