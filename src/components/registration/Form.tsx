@@ -537,7 +537,7 @@ function Form() {
         <div className="registration__form-field pt-1">
           <div>
             <label htmlFor="allergies" className="registration__form-label">
-              Allergies:<span className="required"> *</span>
+              Allergies/Diet Restrictions:<span className="required"> *</span>
             </label>
             <input
               type="text"
