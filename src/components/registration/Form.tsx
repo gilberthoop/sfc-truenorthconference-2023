@@ -398,7 +398,8 @@ function Form() {
           <div>
             <label className="flex justify-items-center">
               <span className="pr-2 mb-4">
-                Do you need transportation upon your arrival (EST timezone)?
+                Do you need transportation upon your arrival to Toronto (EST
+                timezone)?
               </span>
               <input
                 type="checkbox"
