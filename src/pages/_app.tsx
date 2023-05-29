@@ -2,7 +2,7 @@ import { AppProps } from "next/app";
 import { Outfit } from "next/font/google";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../styles/globals.css";
-import "../styles/registration.css";
+import "../styles/form.css";
 import "../styles/thankyou.css";
 import "../styles/list.css";
 
