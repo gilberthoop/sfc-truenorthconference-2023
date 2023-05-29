@@ -200,6 +200,11 @@ function Form() {
     }));
   }
 
+  function verifyRegistration(event: React.FormEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    router.push("/verify-registration");
+  }
+
   return (
     <div className="registration">
       <form onSubmit={handleSubmit} className="registration__form">
@@ -208,6 +213,12 @@ function Form() {
           <p className="text-base">
             Join SFC Canada&apos;s biggest event in 2023.
           </p>
+          <button
+            className="registration__header-btn"
+            onClick={verifyRegistration}
+          >
+            Click/Tap here to verify your registration.
+          </button>
         </header>
         <div className="registration__form-field">
           <div>
