@@ -1,13 +1,13 @@
 import Head from "next/head";
-import List from "@/components/registration/List";
+import RegistrationList from "@/components/registration/RegistrationList";
 
-export default function RegistrationList() {
+export default function RegistrationListPage() {
   return (
     <main>
       <Head>
         <title>SFC TNC Breakthrough | Registration List</title>
       </Head>
-      <List />
+      <RegistrationList />
     </main>
   );
 }

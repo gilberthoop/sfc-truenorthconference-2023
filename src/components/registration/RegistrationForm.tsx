@@ -8,7 +8,7 @@ import { Participant } from "../../utils/types";
 import { REGIONS, AREALIST, MEMBERSHIP_ROLE } from "../../utils/global-values";
 import { sanitizeInput } from "../../utils/input-validation";
 
-function Form() {
+function RegistrationForm() {
   // Form fields
   const initialFormState: Participant = {
     id: Date.now().toString(),
@@ -676,4 +676,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default RegistrationForm;

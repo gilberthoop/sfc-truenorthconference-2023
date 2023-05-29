@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import PosterImg from "../assets/poster.jpeg";
-import Form from "../components/registration/Form";
+import RegistrationForm from "../components/registration/RegistrationForm";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <div className="registration__header-img">
         <Image src={PosterImg} alt="SFC TNC Poster" />
       </div>
-      <Form />
+      <RegistrationForm />
     </main>
   );
 }
