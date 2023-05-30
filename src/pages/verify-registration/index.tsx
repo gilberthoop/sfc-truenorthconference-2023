@@ -56,7 +56,7 @@ export default function VerifyRegistration() {
                 Email:
               </label>
               <input
-                type="text"
+                type="email"
                 id="email"
                 name="email"
                 value={email}
