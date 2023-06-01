@@ -10,17 +10,20 @@ const uri = process.env.MONGODB_URI || "";
 export default (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
-      return handleGet(req, res);
+      return searchAllRegistrations(req, res);
     case "POST":
-      return handlePost(req, res);
+      return submitRegistration(req, res);
     case "DELETE":
-      return handleDelete(req, res);
+      return deleteRegistration(req, res);
     default:
       return res.status(405).end();
   }
 };
 
-async function handleGet(req: NextApiRequest, res: NextApiResponse) {
+async function searchAllRegistrations(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const client = new MongoClient(uri);
   try {
     await client.connect();
@@ -36,7 +39,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-async function handlePost(req: NextApiRequest, res: NextApiResponse) {
+async function submitRegistration(req: NextApiRequest, res: NextApiResponse) {
   const { email, ...rest } = req.body;
   const client = new MongoClient(uri);
 
@@ -59,7 +62,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
     };
 
     await collection.insertOne(newRegistration);
-    res.status(201).json(newRegistration);
+    res.status(201).json({ message: "Your registration is successful!" });
   } catch (error) {
     console.error(error);
     res
@@ -70,7 +73,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-async function handleDelete(req: NextApiRequest, res: NextApiResponse) {
+async function deleteRegistration(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
   const client = new MongoClient(uri);
   try {
