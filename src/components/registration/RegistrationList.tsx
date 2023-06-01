@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import * as XLSX from "xlsx";
@@ -8,9 +9,13 @@ function RegistrationList() {
   const [participants, setParticipants] = useState<Participant[]>([]);
 
   async function fetchParticipants() {
-    const response = await fetch("/api/registrations");
-    const participants: Participant[] = await response.json();
-    setParticipants(participants);
+    try {
+      const response = await axios.get("/api/registrations");
+      const participants: Participant[] = response.data;
+      setParticipants(participants);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
