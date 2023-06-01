@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { CircularProgress } from "@mui/material";
@@ -121,25 +122,16 @@ function RegistrationForm() {
 
   async function registerClient(params: Participant) {
     try {
-      const response = await fetch("/api/registrations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(params),
-      });
-
-      if (response.ok) {
-        setFormState(initialFormState);
-        setErrors([]);
-        router.push("/thank-you");
-      } else {
-        const errorMessage = await response.json();
-        const errors = [errorMessage.message];
-        setErrors(errors);
-      }
-    } catch (e) {
-      console.log(e);
+      await axios.post("/api/registrations", params);
+      setFormState(initialFormState);
+      setErrors([]);
+      router.push("/thank-you");
+    } catch (error) {
+      const errorMessage = axios.isAxiosError(error)
+        ? error.response?.data?.message
+        : "We are unable to process your registration. Please try again later";
+      const errors = [errorMessage];
+      setErrors(errors);
     }
   }
 

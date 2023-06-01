@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import Head from "next/head";
 import { CircularProgress } from "@mui/material";
@@ -19,17 +20,14 @@ export default function VerifyRegistration() {
 
     try {
       setLoading(true);
-      const response = await fetch("/api/verification", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-      const { message, firstname } = await response.json();
+      const response = await axios.post("/api/verification", { email });
+      const { message, firstname } = response.data;
       const greeting = firstname ? `Hi ${firstname}. ${message}` : message;
       setGreeting(greeting);
     } catch {
+      setGreeting(
+        "We are unable to process the request. Please try again later."
+      );
     } finally {
       setLoading(false);
     }
