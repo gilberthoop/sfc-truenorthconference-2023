@@ -1,29 +1,22 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { Action } from "redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, fetchRegistrations } from "@/store";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-// import * as XLSX from "xlsx";
 import { Participant } from "../../utils/types";
-import { TABLE_HEADERS } from "@/utils/global-values";
+import { ThunkDispatch } from "@reduxjs/toolkit";
 
 function RegistrationList() {
-  const [participants, setParticipants] = useState<Participant[]>([]);
-
-  async function fetchParticipants() {
-    try {
-      const response = await axios.get("/api/registrations");
-      const participants: Participant[] = response.data;
-      setParticipants(participants);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const dispatch: ThunkDispatch<RootState, unknown, Action> = useDispatch();
+  const { data: participants } = useSelector(
+    (state: { registrations: { data: Participant[] } }) => state.registrations
+  );
 
   useEffect(() => {
-    fetchParticipants();
-  }, []);
+    dispatch(fetchRegistrations());
+  }, [dispatch]);
 
   // Table information
-  const headers = TABLE_HEADERS;
   const columns: GridColDef[] = [
     { field: "id", headerName: "#", width: 60 },
     { field: "firstname", headerName: "First name", width: 140 },
@@ -71,28 +64,8 @@ function RegistrationList() {
     mediaConsent: participant.mediaConsent ? "Yes" : "No",
   }));
 
-  // function exportToExcel() {
-  //   // Create a new worksheet
-  //   const worksheet = XLSX.utils.json_to_sheet(tableData);
-  //   // Add headers to the worksheet
-  //   XLSX.utils.sheet_add_aoa(worksheet, [headers], { origin: "A1" });
-  //   // Create a new workbook
-  //   const workbook = XLSX.utils.book_new();
-  //   // Add worksheet to the workbook
-  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Participants");
-  //   // Save the workbook as a file
-  //   XLSX.writeFile(workbook, "2023-sfctnc-registration.xlsx");
-  // }
-
   return (
     <div className="py-8 px-5">
-      {/* <button
-        className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700"
-        onClick={exportToExcel}
-      >
-        Export to Excel
-      </button> */}
-
       <DataGrid
         rows={tableData}
         columns={columns}

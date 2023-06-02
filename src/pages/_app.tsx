@@ -1,4 +1,6 @@
 import { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import { store } from "@/store";
 import { Outfit } from "next/font/google";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../styles/globals.css";
@@ -19,11 +21,13 @@ const theme = createTheme({
 
 function TrueNorthConference({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <main className={outfit.className}>
-        <Component {...pageProps} />;
-      </main>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <main className={outfit.className}>
+          <Component {...pageProps} />;
+        </main>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

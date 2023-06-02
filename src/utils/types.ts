@@ -19,3 +19,9 @@ export interface Participant {
   emergencyContact: string;
   mediaConsent: boolean;
 }
+
+export interface ParticipantsState {
+  data: Participant[];
+  isLoading: boolean;
+  error: string | null;
+}
