@@ -30,7 +30,7 @@ async function searchAllRegistrations(
     const database = client.db("sfctnc2023");
     const collection = database.collection("participants");
     const registrations = await collection.find().toArray();
-    res.status(200).json(registrations);
+    res.status(200).json({ registrations });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
