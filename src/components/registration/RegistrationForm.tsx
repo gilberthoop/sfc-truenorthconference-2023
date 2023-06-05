@@ -496,7 +496,8 @@ function RegistrationForm() {
         <div className="registration__form-field">
           <div>
             <p className="pb-2">
-              Will you need accommodation?<span className="required"> *</span>
+              Will you need accommodation prior to or after the conference?
+              <span className="required"> *</span>
             </p>
             <label className="px-4">
               <input
