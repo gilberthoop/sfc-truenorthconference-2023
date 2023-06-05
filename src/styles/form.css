@@ -201,7 +201,7 @@ ol {
     width: auto;
   }
 
-  .registration__form-field div:first-child {
+  .registration__form-field div > p:first-child {
     padding-right: 25px;
   }
 
