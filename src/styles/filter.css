@@ -1,0 +1,43 @@
+.filter__content {
+  z-index: 10;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  @apply p-8 w-full sm:w-80 shadow-2xl bg-white;
+}
+
+.filter__content--slide-in  {
+  display: block;
+  animation: slide-in 0.25s ease forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.filter__form-option {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.filter__form-option label {
+  cursor: pointer;
+}
+
+.filter__search-btn {
+  background-color: #3e83b3;
+  color: #fff;
+  width: 100%;
+  margin-top: 25px;
+  height: 50px;
+  border-radius: 5px;
+}

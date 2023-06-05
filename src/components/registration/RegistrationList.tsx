@@ -3,14 +3,17 @@ import { Action } from "redux";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, fetchRegistrations } from "@/store";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { CircularProgress } from "@mui/material";
 import { Participant } from "../../utils/types";
 import { ThunkDispatch } from "@reduxjs/toolkit";
+import ListFilter from "./ListFilter";
 
 function RegistrationList() {
   const dispatch: ThunkDispatch<RootState, unknown, Action> = useDispatch();
   const { data: participants } = useSelector(
     (state: { registrations: { data: Participant[] } }) => state.registrations
   );
+  const { isLoading } = useSelector((state: RootState) => state.registrations);
 
   useEffect(() => {
     dispatch(fetchRegistrations());
@@ -66,25 +69,45 @@ function RegistrationList() {
 
   return (
     <div className="py-8 px-5">
-      <DataGrid
-        rows={tableData}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 25 },
-          },
-        }}
-        pageSizeOptions={[25, 50, 75, 100]}
-        checkboxSelection
-        className="list"
-        slots={{ toolbar: GridToolbar }}
-        slotProps={{
-          toolbar: {
-            showQuickFilter: true,
-            quickFilterProps: { debounceMs: 500 },
-          },
-        }}
-      />
+      <header className="flex flex-row-reverse justify-between items-end">
+        <ListFilter />
+      </header>
+
+      {isLoading ? (
+        <div className="flex flex-col justify-between items-center">
+          <h1 className="text-center text-white text-2xl sm:text-4xl my-12">
+            Loading data...
+          </h1>
+          <CircularProgress size={100} color="info" />
+        </div>
+      ) : participants.length <= 0 ? (
+        <div>
+          <h1 className="text-center text-white text-2xl sm:text-4xl my-12">
+            No results found.
+          </h1>
+        </div>
+      ) : (
+        <DataGrid
+          rows={tableData}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 50 },
+            },
+          }}
+          pageSizeOptions={[50, 75, 100]}
+          checkboxSelection
+          className="list"
+          slots={{ toolbar: GridToolbar }}
+          slotProps={{
+            toolbar: {
+              showQuickFilter: true,
+              quickFilterProps: { debounceMs: 500 },
+            },
+          }}
+          disableColumnFilter
+        />
+      )}
     </div>
   );
 }

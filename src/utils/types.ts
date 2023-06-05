@@ -25,3 +25,9 @@ export interface ParticipantsState {
   isLoading: boolean;
   error: string | null;
 }
+
+export interface FilterCriteria {
+  region: string[];
+  area: string[];
+  sfcRole: string[];
+}

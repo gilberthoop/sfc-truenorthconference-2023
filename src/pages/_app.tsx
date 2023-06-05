@@ -7,6 +7,7 @@ import "../styles/globals.css";
 import "../styles/form.css";
 import "../styles/thankyou.css";
 import "../styles/list.css";
+import "../styles/filter.css";
 
 const outfit = Outfit({
   weight: "400",
