@@ -9,7 +9,23 @@ const fetchRegistrations = createAsyncThunk("registrations/fetch", async () => {
     return response.data.registrations;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 });
 
-export { fetchRegistrations };
+const filterRegistrations = createAsyncThunk(
+  "registrations/filter",
+  async (queryParams: any = {}) => {
+    try {
+      const response = await axios.get(API_ENDPOINT_URL, {
+        params: queryParams,
+      });
+      return response.data.registrations;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
+
+export { fetchRegistrations, filterRegistrations };

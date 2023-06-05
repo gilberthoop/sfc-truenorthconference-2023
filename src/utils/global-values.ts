@@ -21,7 +21,7 @@ export const AREALIST = [
   ["Regina", "Saskatoon", "Winnipeg"],
   ["Calgary", "Edmonton", "Fort McMurray"],
   ["Greater Vancouver North", "Greater Vancouver South", "Victoria"],
-  ["International"],
+  ["International."],
 ];
 
 export const MEMBERSHIP_ROLE = [
