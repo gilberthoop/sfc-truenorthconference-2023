@@ -1,19 +1,21 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Action } from "redux";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, fetchRegistrations } from "@/store";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { CircularProgress } from "@mui/material";
-import { Participant } from "../../utils/types";
+import { Participant, FilterCriteria } from "../../utils/types";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import ListFilter from "./ListFilter";
 
 function RegistrationList() {
+  const [appliedFilters, setAppliedFilters] = useState<string[]>([]);
   const dispatch: ThunkDispatch<RootState, unknown, Action> = useDispatch();
   const { data: participants } = useSelector(
     (state: { registrations: { data: Participant[] } }) => state.registrations
   );
   const { isLoading } = useSelector((state: RootState) => state.registrations);
+  const searchFilters = useSelector((state: RootState) => state.searchFilters);
 
   useEffect(() => {
     dispatch(fetchRegistrations());
@@ -67,9 +69,35 @@ function RegistrationList() {
     mediaConsent: participant.mediaConsent ? "Yes" : "No",
   }));
 
+  useEffect(() => {
+    const theFilters = getAppliedFilters(searchFilters);
+    setAppliedFilters(theFilters);
+  }, [participants]);
+
+  function getAppliedFilters(filters: FilterCriteria): string[] {
+    const appliedFilters = Object.values(filters).flat();
+    return appliedFilters;
+  }
+
+  const searchResultsText =
+    appliedFilters.length > 0 ? (
+      <h1 className="text-lg">Search result(s) for: </h1>
+    ) : (
+      ""
+    );
+
   return (
     <div className="py-8 px-5">
-      <header className="flex flex-row-reverse justify-between items-end">
+      <header className="flex flex-col md:flex-row justify-between items-center">
+        <div className="inline text-white text-md mb-4 sm:mb-2 mr-0 sm:mr-28">
+          {searchResultsText}
+          {appliedFilters.length > 0 &&
+            appliedFilters.map((filter, index) => (
+              <button className="filter__chip" key={index}>
+                {filter}
+              </button>
+            ))}
+        </div>
         <ListFilter />
       </header>
 

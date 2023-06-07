@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Action } from "redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { RootState, filterRegistrations, fetchRegistrations } from "@/store";
+import {
+  RootState,
+  filterRegistrations,
+  fetchRegistrations,
+  setSearchFilter,
+  removeSearchFilters,
+} from "@/store";
 import { REGIONS, AREALIST, MEMBERSHIP_ROLE } from "@/utils/global-values";
 import { FilterCriteria } from "@/utils/types";
 
@@ -23,11 +29,7 @@ function ListFilter() {
     area: false,
     sfcRole: false,
   });
-  const [filters, setFilters] = useState<FilterCriteria>({
-    region: [],
-    area: [],
-    sfcRole: [],
-  });
+  const searchFilters = useSelector((state: RootState) => state.searchFilters);
 
   function handleFilterVisibility(criteria: keyof typeof filterVisibility) {
     setFilterVisibility((prevFilterVisibility) => ({
@@ -37,11 +39,7 @@ function ListFilter() {
   }
 
   function clearFiltersSelection() {
-    setFilters({
-      region: [],
-      area: [],
-      sfcRole: [],
-    });
+    dispatch(removeSearchFilters());
     setShowFilters(false);
     dispatch(fetchRegistrations());
   }
@@ -49,25 +47,17 @@ function ListFilter() {
   function updateFilters(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value, checked } = event.target;
 
-    setFilters((prevFilters) => {
-      const updatedArray = [
-        ...(prevFilters[name as keyof FilterCriteria] ?? []),
-      ];
-      const existingArray = prevFilters[name as keyof FilterCriteria] ?? [];
-
-      if (checked) {
-        updatedArray.push(value);
-      } else {
-        const index = existingArray.indexOf(value);
-        if (index !== -1) {
-          updatedArray.splice(index, 1);
-        }
-      }
-
-      return {
+    dispatch((dispatch, getState) => {
+      const prevFilters = getState().searchFilters;
+      const updatedSearchFilters = {
         ...prevFilters,
-        [name as keyof FilterCriteria]: updatedArray,
+        [name as keyof FilterCriteria]: checked
+          ? [...prevFilters[name as keyof FilterCriteria], value]
+          : prevFilters[name as keyof FilterCriteria].filter(
+              (item) => item !== value
+            ),
       };
+      dispatch(setSearchFilter(updatedSearchFilters));
     });
   }
 
@@ -75,7 +65,7 @@ function ListFilter() {
     event.preventDefault();
     try {
       const queryParams = new URLSearchParams();
-      Object.entries(filters).forEach(([key, values]) => {
+      Object.entries(searchFilters).forEach(([key, values]) => {
         values.forEach((value: string) => {
           queryParams.append(key, value);
         });
@@ -93,10 +83,10 @@ function ListFilter() {
   }
 
   return (
-    <main className="bg-white w-full sm:w-40 p-2 rounded-md">
+    <main className="filter">
       <button
         onClick={() => setShowFilters(!showFilters)}
-        className="w-full h-7"
+        className="w-full h-8"
       >
         Filter search
       </button>
@@ -131,7 +121,7 @@ function ListFilter() {
                     name="region"
                     id={regionOption}
                     value={regionOption}
-                    checked={filters.region.includes(regionOption)}
+                    checked={searchFilters.region.includes(regionOption)}
                     onChange={updateFilters}
                     className="mr-2"
                   />
@@ -160,7 +150,7 @@ function ListFilter() {
                     name="area"
                     id={areaOption}
                     value={areaOption}
-                    checked={filters.area.includes(areaOption)}
+                    checked={searchFilters.area.includes(areaOption)}
                     onChange={updateFilters}
                     className="mr-2"
                   />
@@ -189,7 +179,7 @@ function ListFilter() {
                     name="sfcRole"
                     id={roleOption}
                     value={roleOption}
-                    checked={filters.sfcRole.includes(roleOption)}
+                    checked={searchFilters.sfcRole.includes(roleOption)}
                     onChange={updateFilters}
                     className="mr-2"
                   />
