@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Action } from "redux";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import {
-  RootState,
-  filterRegistrations,
-  fetchRegistrations,
-  setSearchFilter,
-  removeSearchFilters,
-} from "@/store";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 import { REGIONS, AREALIST, MEMBERSHIP_ROLE } from "@/utils/global-values";
-import { FilterCriteria } from "@/utils/types";
 
-function ListFilter() {
-  const dispatch: ThunkDispatch<RootState, unknown, Action> = useDispatch();
+interface FilterProps {
+  onFilterChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onFilterClear: () => void;
+  onFilterSearch: () => void;
+}
+
+function RegistrationListFilter({
+  onFilterChange,
+  onFilterClear,
+  onFilterSearch,
+}: FilterProps) {
   const regionsOptions = REGIONS.map((region) => region.value);
   // OPTIONALLY, const areasOptions: string[] = AREALIST.flatMap((area) => area);
   const areasOptions: string[] = AREALIST.reduce(
@@ -39,43 +39,18 @@ function ListFilter() {
   }
 
   function clearFiltersSelection() {
-    dispatch(removeSearchFilters());
     setShowFilters(false);
-    dispatch(fetchRegistrations());
+    onFilterClear();
   }
 
   function updateFilters(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value, checked } = event.target;
-
-    dispatch((dispatch, getState) => {
-      const prevFilters = getState().searchFilters;
-      const updatedSearchFilters = {
-        ...prevFilters,
-        [name as keyof FilterCriteria]: checked
-          ? [...prevFilters[name as keyof FilterCriteria], value]
-          : prevFilters[name as keyof FilterCriteria].filter(
-              (item) => item !== value
-            ),
-      };
-      dispatch(setSearchFilter(updatedSearchFilters));
-    });
+    onFilterChange(event);
   }
 
   function handleFilterSearch(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault();
-    try {
-      const queryParams = new URLSearchParams();
-      Object.entries(searchFilters).forEach(([key, values]) => {
-        values.forEach((value: string) => {
-          queryParams.append(key, value);
-        });
-      });
-      dispatch(filterRegistrations(queryParams));
-    } catch (e) {
-      console.error(e);
-    } finally {
-      closeFilters();
-    }
+    onFilterSearch();
+    closeFilters();
   }
 
   function closeFilters() {
@@ -96,12 +71,12 @@ function ListFilter() {
         }`}
       >
         <form onSubmit={(event) => event.preventDefault()}>
-          <section className="flex justify-between border-b-2 pb-4 underline">
+          <section className="flex justify-between pb-8 underline">
             <button onClick={clearFiltersSelection}>Clear All</button>
             <button onClick={closeFilters}>Close</button>
           </section>
           {/* Regions */}
-          <section className="py-4 border-b-2">
+          <section className="py-4 border-t-2">
             <button
               className="w-full"
               onClick={() => handleFilterVisibility("region")}
@@ -132,7 +107,7 @@ function ListFilter() {
           </section>
 
           {/* Areas */}
-          <section className="py-4 border-b-2">
+          <section className="py-4 border-t-2">
             <button
               className="w-full"
               onClick={() => handleFilterVisibility("area")}
@@ -161,7 +136,7 @@ function ListFilter() {
           </section>
 
           {/* Roles */}
-          <section className="pt-4">
+          <section className="py-4 border-t-2">
             <button
               className="w-full"
               onClick={() => handleFilterVisibility("sfcRole")}
@@ -197,4 +172,4 @@ function ListFilter() {
   );
 }
 
-export default ListFilter;
+export default RegistrationListFilter;
