@@ -38,6 +38,8 @@ export default function Home() {
         <Image src={PosterImg} alt="SFC TNC Poster" />
       </div>
 
+      <div className="app-header--mobile"></div>
+
       <AppNav
         ctaTitle={"Register"}
         onCTAClick={redirectToRegistration}
