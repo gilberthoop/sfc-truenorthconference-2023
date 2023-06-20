@@ -567,12 +567,13 @@ function RegistrationForm() {
               className="registration__form-select"
             >
               <option value=""></option>
-              <option value="XS">Extra Small</option>
-              <option value="S">Small</option>
-              <option value="M">Medium</option>
-              <option value="L">Large</option>
-              <option value="XL">Extra Large</option>
-              <option value="2XL">Double Extra Large</option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="2XL">2XL</option>
+              <option value="3XL">3XL</option>
             </select>
           </div>
         </div>
