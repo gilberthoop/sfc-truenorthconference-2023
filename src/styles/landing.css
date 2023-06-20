@@ -34,6 +34,18 @@
   @apply lg:flex-row lg:px-0;
 }
 
+.content__heading {
+  @apply py-4 sm:py-8 lg:py-0;
+}
+
+.content__heading > h1 {
+  line-height: 1.2 !important;
+  font-family: Arial;
+  @apply text-4xl text-center font-black uppercase;
+  @apply sm:text-5xl;
+  @apply lg:text-6xl;
+}
+
 .content__list-item {
   background-color: #324A7A;
   @apply w-full m-auto p-4 my-8 rounded-lg;

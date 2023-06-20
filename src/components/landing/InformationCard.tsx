@@ -19,8 +19,8 @@ function InformationCard({ title, faqContents }: InformationProps) {
   return (
     <div className="content">
       <section className="content__section">
-        <div className="py-4 sm:py-8 lg:py-0">
-          <h1 className="text-4xl sm:text-5xl text-center">{title}</h1>
+        <div className="content__heading">
+          <h1>{title}</h1>
         </div>
         <div className="text-center lg:text-left">{renderedInfo}</div>
       </section>

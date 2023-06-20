@@ -42,7 +42,7 @@ function FrequentlyAskedQuestions() {
     {
       question: "Where do I send my registration fee?",
       answers: [
-        "You can e-transfer your registration fee to cfcsfctnc@gmail.com using the question 'What is this year's anchor verse?' and use the password Mark21011.",
+        "You can e-transfer your registration fee to cfcsfctnc@gmail.com using the question 'What is this year's anchor verse?' and use the password mark21011.",
         "Please indicate the full name of the registered individual you are paying for in the message box. You will receive a confirmation email within 24 hours once payment is received.",
       ],
     },
