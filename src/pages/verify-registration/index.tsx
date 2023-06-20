@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import { CircularProgress } from "@mui/material";
 import { sanitizeInput } from "@/utils/input-validation";
+import AppNav from "@/components/AppNav";
 
 export default function VerifyRegistration() {
   const [email, setEmail] = useState<string>("");
@@ -33,11 +35,17 @@ export default function VerifyRegistration() {
     }
   }
 
+  const router = useRouter();
+  function handleCallToAction() {
+    router.push("/register");
+  }
+
   return (
-    <main className="main">
+    <main>
       <Head>
         <title>SFC Breakthrough | Verify Registration</title>
       </Head>
+      <AppNav ctaTitle={"Register"} onCTAClick={handleCallToAction} />
       <section className="verification">
         <form onSubmit={checkRegistration} className="verification__form">
           <header className="verification__header text-center">
