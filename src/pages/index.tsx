@@ -1,18 +1,54 @@
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
-import PosterImg from "../assets/poster.jpeg";
-import RegistrationForm from "../components/registration/RegistrationForm";
+import PosterImg from "@/assets/poster.jpeg";
+import FAQ from "@/components/landing/FrequentlyAskedQuestions";
+import AppNav from "@/components/AppNav";
+import Introduction from "@/components/landing/Introduction";
+import { NavigationInfo } from "@/utils/types";
 
 export default function Home() {
+  // const navMenuItems: NavigationInfo[] = [
+  //   {
+  //     href: "#details",
+  //     name: "Details",
+  //   },
+  //   {
+  //     href: "#faq",
+  //     name: "FAQ",
+  //   },
+  // ];
+
+  const router = useRouter();
+  function redirectToRegistration() {
+    router.push("/register");
+  }
+
+  function redirectToVerification() {
+    router.push("/verify-registration");
+  }
+
   return (
-    <main className="main">
+    <main className="min-h-screen">
       <Head>
-        <title>SFC TNC Breakthrough | Register</title>
+        <title>SFC TNC Breakthrough | Welcome</title>
       </Head>
-      <div className="registration__header-img">
+
+      <div className="app-header-img">
         <Image src={PosterImg} alt="SFC TNC Poster" />
       </div>
-      <RegistrationForm />
+
+      <AppNav
+        ctaTitle={"Register"}
+        onCTAClick={redirectToRegistration}
+        onExtraCTAclick={redirectToVerification}
+        extraCTAtitle={"Verify Registration"}
+      />
+
+      <div className="main">
+        <Introduction />
+        <FAQ />
+      </div>
     </main>
   );
 }

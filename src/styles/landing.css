@@ -1,0 +1,85 @@
+.introduction__main {
+  @apply my-24 text-white;
+  @apply sm:mx-16;
+  @apply lg:mx-40;
+  @apply xl:mx-60;
+}
+
+.info__main {
+  background-color: #2593A2;
+  @apply rounded-lg p-6 text-white;
+  @apply sm:p-10;
+  @apply xl:py-14 xl:px-16;
+}
+
+.info__body:first-child {
+  @apply mb-10;
+}
+
+.info__body-title {
+  @apply text-xl font-bold underline;
+  @apply md:text-2xl md:mb-2;
+}
+
+.info__body-paragraph {
+  @apply mt-4;
+}
+
+.content__section {
+  width: 100%;
+
+  @apply flex flex-col justify-center items-center;
+  @apply sm:gap-x-40;
+  @apply md:px-10;
+  @apply lg:flex-row lg:px-0;
+}
+
+.content__list-item {
+  background-color: #324A7A;
+  @apply w-full m-auto p-4 my-8 rounded-lg;
+  @apply sm:w-8/12 sm:p-8;
+  @apply lg:w-full lg:p-6;
+}
+
+.content__list-item-title {
+  @apply text-xl mb-1 underline;
+  @apply sm:text-2xl;
+}
+
+.content__list-item-title-body {
+  @apply sm:text-lg;
+}
+
+@media screen and (min-width: 1024px) {
+  .content__section > div:first-child {
+    flex-basis: 300px;
+  }
+
+  .content__section > div:last-child {
+    flex-basis: 500px;
+  }  
+}
+
+.bargraph {
+  color: #324A7A;
+  @apply p-6 bg-white w-full text-xs;
+  @apply sm:text-lg;
+  @apply lg:px-10;
+}
+
+.bargraph__title {
+  @apply text-2xl text-center underline pb-4;
+}
+
+.bargraph__data {
+  @apply flex flex-col justify-center gap-y-4 w-full;
+}
+
+.bargraph__bar {
+  background-color: #324A7A;
+  height: 50px;
+}
+
+.bargraph__metrics {
+  @apply flex justify-between mt-4 border-t-2;
+}

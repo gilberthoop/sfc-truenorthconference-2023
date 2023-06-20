@@ -28,6 +28,74 @@ body {
   padding-right: 20px;
 }
 
+.app-header-img {
+  @apply pt-12;
+  @apply sm:pt-0;
+}
+
+.app-nav {
+  background-color: rgba(31, 101, 140);
+  backdrop-filter: blur(10px);
+  @apply absolute w-full top-0 text-white text-lg;
+  @apply sm:sticky sm:px-8;
+  @apply md:px-16;
+  @apply lg:px-20;
+  @apply xl:px-20;
+}
+
+.app-nav__menu {
+  @apply flex;
+  @apply sm:gap-x-12;
+  @apply md:gap-x-16;
+  @apply lg:gap-x-28;
+}
+
+.app-nav__cta {
+  text-decoration: underline;
+  position: relative;
+  font-size: 16px;
+  @apply py-2 px-4 rounded;
+  @apply sm:px-8 sm:text-lg sm:bg-white;
+}
+
+.app-nav--desktop {
+  @apply hidden h-20;
+  @apply sm:flex sm:justify-between sm:items-center sm:h-20;
+}
+
+.app-nav--mobile {
+  @apply h-12 flex items-center justify-center gap-x-8;
+  @apply sm:hidden;
+}
+
+.app-nav--alldevice {
+  @apply h-12 flex items-center justify-center gap-x-8;
+  @apply sm:h-24 sm:justify-end;
+}
+
+.chevron {
+  width: 10px;
+  height: 10px;
+  border-top: 8px solid #ffffff;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  position: absolute;
+  right: 35px;
+
+  @apply sm:hidden;
+}
+
+@media screen and (min-width: 640px) {
+  .app-nav {
+    background-color: rgba(31, 101, 140, 0.75);
+  }
+  
+  .app-nav__cta {
+    color: #2593A2;
+    text-decoration: none;
+  }
+}
+
 @media screen and (min-width: 720px) {
   .main {
     padding: 0 30px;
