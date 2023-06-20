@@ -28,9 +28,20 @@ body {
   padding-right: 20px;
 }
 
+.app-header--mobile {
+  height: 55vh;
+  background-image: url('../assets/poster.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 52%;
+
+  @apply mt-12;
+  @apply sm:mt-0 sm:hidden;
+}
+
 .app-header-img {
-  @apply pt-12;
-  @apply sm:pt-0;
+  @apply hidden pt-12;
+  @apply sm:block sm:pt-0;
 }
 
 .app-nav {
