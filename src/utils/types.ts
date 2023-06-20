@@ -31,3 +31,25 @@ export interface FilterCriteria {
   area: string[];
   sfcRole: string[];
 }
+
+export interface FAQ {
+  question: string;
+  answers: string[];
+}
+
+export interface InformationProps {
+  title: string;
+  body?: string[];
+  image?: string;
+  faqContents?: FAQ[];
+}
+
+export interface RegionStats {
+  region: string;
+  count: number;
+}
+
+export interface NavigationInfo {
+  href: string;
+  name: string;
+}
