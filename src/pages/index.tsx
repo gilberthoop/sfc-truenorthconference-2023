@@ -5,6 +5,7 @@ import PosterImg from "@/assets/poster.jpeg";
 import FAQ from "@/components/landing/FrequentlyAskedQuestions";
 import AppNav from "@/components/AppNav";
 import Introduction from "@/components/landing/Introduction";
+import Promo from "@/components/landing/Promo";
 import { NavigationInfo } from "@/utils/types";
 
 export default function Home() {
@@ -48,6 +49,7 @@ export default function Home() {
       />
 
       <div className="main">
+        <Promo />
         <Introduction />
         <FAQ />
       </div>
