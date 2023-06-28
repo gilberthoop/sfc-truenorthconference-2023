@@ -97,9 +97,9 @@
 }
 
 .promo {
-  @apply flex flex-col items-center gap-y-10 py-10;
-  @apply sm:px-10 sm:py-32;
-  @apply lg:px-40;
+  @apply flex flex-col items-center justify-center gap-y-6 py-10;
+  @apply sm:py-32;
+  @apply lg:flex-row lg:flex-wrap lg:gap-x-10 lg:gap-y-10;
 }
 
 .promo__section {
@@ -118,7 +118,7 @@
 
 @media screen and (min-width: 780px) {
   .promo__section {
-    max-width: 800px;
-    height: 800px;
+    max-width: 500px;
+    max-height: 500px;
   }
 }
