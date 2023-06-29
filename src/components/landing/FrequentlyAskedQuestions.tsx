@@ -23,7 +23,7 @@ function FrequentlyAskedQuestions() {
     },
     {
       question: "Open to:",
-      answers: ["All SFC members"],
+      answers: ["All SFC members and SFC+"],
     },
     {
       question: "Cost:",

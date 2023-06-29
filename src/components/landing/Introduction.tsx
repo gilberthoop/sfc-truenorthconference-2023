@@ -9,7 +9,7 @@ function Introduction() {
       body: [
         "We hope you all are doing well with your personal preparations for this year's True North Conference! Registration is currently open and numbers of registered brothers and sisters are tallying up. The chart above shows the current registered numbers per area.",
         "Great job thus far SFC! If you haven't done so yet, register online at sfctncbreakthrough.vercel.app. There's also an incentive for people to register and attend this year's TNC! When we reach 165 paid registrants, 2 LUCKY PARTICIPANTS will have their registration fee FULLY REFUNDED and with 180 paid registrants, EVERYONE will receive a PORTION OF THEIR REG REFUNDED!! So call your households and let's make this reunion a BREAKTHROUGH!",
-        "For those who have already registered for NC, make sure you keep an eye out in your emails (both inbox and junk folder) for updates regarding NC. We will be sending out regular memos like this to update you on the upcoming NC. With that being said, here is your first update:",
+        "For those who have already registered for TNC, make sure you keep an eye out in your emails (both inbox and junk folder) for updates regarding TNC. We will be sending out regular memos like this to update you on the upcoming TNC. With that being said, here is your first update:",
       ],
     },
     {
