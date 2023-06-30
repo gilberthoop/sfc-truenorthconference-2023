@@ -22,7 +22,7 @@
 }
 
 .info__body-paragraph {
-  @apply mt-4;
+  @apply mt-4 text-sm;
 }
 
 .content__section {
