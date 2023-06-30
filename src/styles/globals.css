@@ -47,7 +47,7 @@ body {
 .app-nav {
   background-color: rgba(31, 101, 140);
   backdrop-filter: blur(10px);
-  @apply absolute w-full top-0 text-white text-lg;
+  @apply fixed w-full top-0 text-white text-lg;
   @apply sm:sticky sm:px-8;
   @apply md:px-16;
   @apply lg:px-20;
@@ -62,10 +62,10 @@ body {
 }
 
 .app-nav__cta {
-  text-decoration: underline;
+  background-color: #2593A2;
   position: relative;
   font-size: 16px;
-  @apply py-2 px-4 rounded;
+  @apply py-2 px-4 rounded text-sm;
   @apply sm:px-8 sm:text-lg sm:bg-white;
 }
 
@@ -80,7 +80,7 @@ body {
 }
 
 .app-nav--alldevice {
-  @apply h-12 flex items-center justify-center gap-x-8;
+  @apply h-14 flex items-center justify-center gap-x-8;
   @apply sm:h-24 sm:justify-end;
 }
 
