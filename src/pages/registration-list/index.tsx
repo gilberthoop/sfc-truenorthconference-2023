@@ -63,18 +63,16 @@ export default function RegistrationListPage() {
   function handleFilterUpdate(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value, checked } = event.target;
 
-    dispatch((dispatch, getState) => {
-      const prevFilters = getState().searchFilters;
-      const updatedSearchFilters = {
-        ...prevFilters,
-        [name as keyof FilterCriteria]: checked
-          ? [...prevFilters[name as keyof FilterCriteria], value]
-          : prevFilters[name as keyof FilterCriteria].filter(
-              (item) => item !== value
-            ),
-      };
-      dispatch(setSearchFilter(updatedSearchFilters));
-    });
+    const updatedSearchFilters = {
+      ...searchFilters,
+      [name as keyof FilterCriteria]: checked
+        ? [...searchFilters[name as keyof FilterCriteria], value]
+        : searchFilters[name as keyof FilterCriteria].filter(
+            (item) => item !== value
+          ),
+    };
+
+    dispatch(setSearchFilter(updatedSearchFilters));
   }
 
   const searchResultsText =
