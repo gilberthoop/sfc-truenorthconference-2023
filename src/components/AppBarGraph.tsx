@@ -1,13 +1,12 @@
 import { RegionStats } from "@/utils/types";
 
-const STATS_ALLOWANCE = 20;
-
 interface BarGraphProps {
   title: string;
   data: RegionStats[];
+  metricAllowance?: number;
 }
 
-function AppBarGraph({ title, data }: BarGraphProps) {
+function AppBarGraph({ title, data, metricAllowance = 0 }: BarGraphProps) {
   const maxStatsValue = getMaxStatsValue();
   const metrics = getMetrics(maxStatsValue);
 
@@ -16,7 +15,7 @@ function AppBarGraph({ title, data }: BarGraphProps) {
     const maxCount = Math.max(...counts);
     const maxValue = Math.round(maxCount / 10) * 10;
 
-    return maxValue + STATS_ALLOWANCE;
+    return maxValue + metricAllowance;
   }
 
   function getMetrics(maxValue: number): number[] {
