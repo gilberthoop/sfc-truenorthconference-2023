@@ -29,6 +29,7 @@ function RegistrationStats() {
         <AppBarGraph
           title={"Number of Registered Participants"}
           data={regionStats}
+          metricAllowance={10}
         />
       ) : (
         <div className="flex justify-center">
