@@ -1,5 +1,6 @@
 import InformationBody from "@/components/landing/InformationBody";
 import RegistrationStats from "@/components/registration/RegistrationStats";
+import Memo from "./Memo";
 import { InformationProps } from "@/utils/types";
 
 function Introduction() {
@@ -25,7 +26,8 @@ function Introduction() {
   return (
     <main className="introduction__main">
       <RegistrationStats />
-      <InformationBody contents={contents} />
+      {/* <InformationBody contents={contents} /> */}
+      <Memo />
     </main>
   );
 }
