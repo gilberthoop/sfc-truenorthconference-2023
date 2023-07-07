@@ -6,20 +6,9 @@ import FAQ from "@/components/landing/FrequentlyAskedQuestions";
 import AppNav from "@/components/AppNav";
 import Introduction from "@/components/landing/Introduction";
 import Promo from "@/components/landing/Promo";
-import { NavigationInfo } from "@/utils/types";
+import AppFooter from "@/components/AppFooter";
 
 export default function Home() {
-  // const navMenuItems: NavigationInfo[] = [
-  //   {
-  //     href: "#details",
-  //     name: "Details",
-  //   },
-  //   {
-  //     href: "#faq",
-  //     name: "FAQ",
-  //   },
-  // ];
-
   const router = useRouter();
   function redirectToRegistration() {
     router.push("/register");
@@ -53,6 +42,8 @@ export default function Home() {
         <Introduction />
         <FAQ />
       </div>
+
+      <AppFooter info="Registration ends July 9!" />
     </main>
   );
 }

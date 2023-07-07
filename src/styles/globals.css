@@ -96,6 +96,19 @@ body {
   @apply sm:hidden;
 }
 
+.app-footer {
+  color: white;
+  background-color: #2593A2;
+  backdrop-filter: blur(10px);
+  @apply flex justify-center py-4 sticky bottom-0;
+}
+
+.app-footer__heading {
+  text-transform: uppercase;
+  font-weight: 700;
+  @apply text-lg;
+}
+
 @media screen and (min-width: 640px) {
   .app-nav {
     background-color: rgba(31, 101, 140, 0.75);
@@ -112,3 +125,4 @@ body {
     padding: 0 30px;
   }
 }
+

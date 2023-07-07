@@ -31,7 +31,7 @@ function TrueNorthConference({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <main className={poppins.className}>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </main>
       </ThemeProvider>
     </Provider>
