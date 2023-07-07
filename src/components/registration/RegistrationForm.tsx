@@ -565,8 +565,9 @@ function RegistrationForm() {
               value={formState.shirtSize}
               onChange={handleInputChange}
               className="registration__form-select"
+              required
             >
-              <option value=""></option>
+              <option value="">Please select an option</option>
               <option value="XS">XS</option>
               <option value="S">S</option>
               <option value="M">M</option>
