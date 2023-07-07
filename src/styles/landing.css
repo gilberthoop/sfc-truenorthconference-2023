@@ -21,8 +21,18 @@
   @apply md:text-2xl md:mb-2;
 }
 
+.info__body-title--undecorated {
+  @apply text-xl font-bold mb-8;
+  @apply md:text-2xl;
+}
+
 .info__body-paragraph {
   @apply mt-4 text-sm;
+}
+
+.info__body-salutation {
+  @apply mt-8 text-sm;
+  @apply lg:text-lg;
 }
 
 .content__section {
@@ -99,7 +109,7 @@
 .promo {
   @apply flex flex-col items-center justify-center gap-y-6 py-10;
   @apply sm:py-32;
-  @apply lg:flex-row lg:flex-wrap lg:gap-x-10 lg:gap-y-10;
+  @apply lg:flex-row lg:flex-wrap lg:gap-x-2 lg:gap-y-2;
 }
 
 .promo__section {
