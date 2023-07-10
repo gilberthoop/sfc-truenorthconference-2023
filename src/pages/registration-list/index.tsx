@@ -1,79 +1,18 @@
-import { useState, useEffect } from "react";
-import { Action } from "redux";
-import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import {
-  RootState,
-  fetchRegistrations,
-  filterRegistrations,
-  setSearchFilter,
-  removeSearchFilters,
-} from "@/store";
 import Head from "next/head";
 import { CircularProgress } from "@mui/material";
-import { Participant, FilterCriteria } from "@/utils/types";
 import AppList from "@/components/AppList";
 import RegistrationListFilter from "@/components/registration/RegistrationListFilter";
+import useParticipants from "@/hooks/use-participants";
+import useSearchFilters from "@/hooks/use-search-filters";
 
 export default function RegistrationListPage() {
-  // List
-  const { data: participants } = useSelector(
-    (state: { registrations: { data: Participant[] } }) => state.registrations
-  );
-  const { isLoading } = useSelector((state: RootState) => state.registrations);
-
-  const dispatch: ThunkDispatch<RootState, unknown, Action> = useDispatch();
-  useEffect(() => {
-    dispatch(fetchRegistrations());
-  }, [dispatch]);
-
-  // Filter
-  const [appliedFilters, setAppliedFilters] = useState<string[]>([]);
-  const searchFilters = useSelector((state: RootState) => state.searchFilters);
-
-  function getAppliedFilters(filters: FilterCriteria): string[] {
-    const appliedFilters = Object.values(filters).flat();
-    return appliedFilters;
-  }
-
-  useEffect(() => {
-    const theFilters = getAppliedFilters(searchFilters);
-    setAppliedFilters(theFilters);
-  }, [participants]);
-
-  function handleFilterClear() {
-    dispatch(removeSearchFilters());
-    dispatch(fetchRegistrations());
-  }
-
-  function handleFilterSearch() {
-    try {
-      const queryParams = new URLSearchParams();
-      Object.entries(searchFilters).forEach(([key, values]) => {
-        values.forEach((value: string) => {
-          queryParams.append(key, value);
-        });
-      });
-      dispatch(filterRegistrations(queryParams));
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  function handleFilterUpdate(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value, checked } = event.target;
-
-    const updatedSearchFilters = {
-      ...searchFilters,
-      [name as keyof FilterCriteria]: checked
-        ? [...searchFilters[name as keyof FilterCriteria], value]
-        : searchFilters[name as keyof FilterCriteria].filter(
-            (item) => item !== value
-          ),
-    };
-
-    dispatch(setSearchFilter(updatedSearchFilters));
-  }
+  const { participants, isLoading } = useParticipants();
+  const {
+    appliedFilters,
+    handleFilterClear,
+    handleFilterSearch,
+    handleFilterUpdate,
+  } = useSearchFilters();
 
   const searchResultsText =
     appliedFilters.length > 0 ? (
