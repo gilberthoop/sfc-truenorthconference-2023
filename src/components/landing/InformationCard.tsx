@@ -1,6 +1,9 @@
 import { InformationProps } from "@/utils/types";
 
-function InformationCard({ title, faqContents }: InformationProps) {
+const InformationCard: React.FC<InformationProps> = ({
+  title,
+  faqContents,
+}) => {
   const renderedInfo = (
     <ul>
       {faqContents?.map((faq, index) => (
@@ -26,6 +29,6 @@ function InformationCard({ title, faqContents }: InformationProps) {
       </section>
     </div>
   );
-}
+};
 
 export default InformationCard;

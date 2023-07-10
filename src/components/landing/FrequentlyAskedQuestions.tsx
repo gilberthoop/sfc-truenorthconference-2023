@@ -1,6 +1,6 @@
 import InformationCard from "./InformationCard";
 
-function FrequentlyAskedQuestions() {
+const FrequentlyAskedQuestions: React.FC = () => {
   const faqData = [
     {
       question: "When:",
@@ -59,6 +59,6 @@ function FrequentlyAskedQuestions() {
       <InformationCard title={"It's that time again!"} faqContents={faqData} />
     </main>
   );
-}
+};
 
 export default FrequentlyAskedQuestions;

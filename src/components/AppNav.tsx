@@ -8,13 +8,13 @@ interface AppNavProps {
   extraCTAtitle?: string;
 }
 
-function AppNav({
+const AppNav: React.FC<AppNavProps> = ({
   menuItems,
   ctaTitle,
   onCTAClick,
   onExtraCTAclick,
   extraCTAtitle,
-}: AppNavProps) {
+}) => {
   const renderedMenuItems = (
     <section className="app-nav__menu">
       {menuItems &&
@@ -89,6 +89,6 @@ function AppNav({
   );
 
   return <nav className="app-nav">{renderedNavAllDevices}</nav>;
-}
+};
 
 export default AppNav;

@@ -1,4 +1,4 @@
-function Memo() {
+const Memo: React.FC = () => {
   return (
     <main className="info__main">
       <h1 className="info__body-title--undecorated">
@@ -48,6 +48,6 @@ function Memo() {
       <p>CFC - SFC TNC Breakthrough Secretariat Committee</p>
     </main>
   );
-}
+};
 
 export default Memo;

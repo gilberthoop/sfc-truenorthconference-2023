@@ -2,7 +2,7 @@ interface FooterProps {
   info: string;
 }
 
-function AppFooter({ info }: FooterProps) {
+const AppFooter: React.FC<FooterProps> = ({ info }) => {
   return (
     <footer className="app-footer">
       <div>
@@ -10,6 +10,6 @@ function AppFooter({ info }: FooterProps) {
       </div>
     </footer>
   );
-}
+};
 
 export default AppFooter;

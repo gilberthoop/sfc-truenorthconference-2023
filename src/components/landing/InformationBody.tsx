@@ -4,7 +4,7 @@ interface InformationBodyProps {
   contents: InformationProps[];
 }
 
-function InformationBody({ contents }: InformationBodyProps) {
+const InformationBody: React.FC<InformationBodyProps> = ({ contents }) => {
   return (
     <main className="info__main">
       {contents.map((content, index) => (
@@ -19,6 +19,6 @@ function InformationBody({ contents }: InformationBodyProps) {
       ))}
     </main>
   );
-}
+};
 
 export default InformationBody;
