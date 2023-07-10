@@ -45,7 +45,7 @@ export default function VerifyRegistration() {
       <Head>
         <title>SFC Breakthrough | Verify Registration</title>
       </Head>
-      <AppNav ctaTitle={"Register"} onCTAClick={handleCallToAction} />
+      {/* <AppNav ctaTitle={"Register"} onCTAClick={handleCallToAction} /> */}
       <section className="verification">
         <form onSubmit={checkRegistration} className="verification__form">
           <header className="verification__header text-center">
