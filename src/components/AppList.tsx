@@ -5,7 +5,7 @@ interface ListProp {
   data: Participant[];
 }
 
-function AppList({ data }: ListProp) {
+const AppList: React.FC<ListProp> = ({ data }) => {
   // Table information
   const columns: GridColDef[] = [
     { field: "id", headerName: "#", width: 60 },
@@ -86,6 +86,6 @@ function AppList({ data }: ListProp) {
       )}
     </section>
   );
-}
+};
 
 export default AppList;

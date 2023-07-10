@@ -6,7 +6,11 @@ interface BarGraphProps {
   metricAllowance?: number;
 }
 
-function AppBarGraph({ title, data, metricAllowance = 0 }: BarGraphProps) {
+const AppBarGraph: React.FC<BarGraphProps> = ({
+  title,
+  data,
+  metricAllowance = 0,
+}) => {
   const maxStatsValue = getMaxStatsValue();
   const metrics = getMetrics(maxStatsValue);
 
@@ -58,6 +62,6 @@ function AppBarGraph({ title, data, metricAllowance = 0 }: BarGraphProps) {
       <div className="bargraph">{renderedBarGraph}</div>
     </main>
   );
-}
+};
 
 export default AppBarGraph;

@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import AppBarGraph from "../AppBarGraph";
 import useRegionStats from "@/hooks/use-region-stats";
 
-function RegistrationStats() {
+const RegistrationStats: React.FC = () => {
   const { regionStats } = useRegionStats();
 
   return (
@@ -20,6 +20,6 @@ function RegistrationStats() {
       )}
     </main>
   );
-}
+};
 
 export default RegistrationStats;

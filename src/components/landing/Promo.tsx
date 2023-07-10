@@ -4,7 +4,7 @@ import ReducedRegistrationFee from "@/assets/reduced_reg_fee.webp";
 import RegisterNowImage from "@/assets/register_now.webp";
 import RegisterImage from "@/assets/have_you_registered.webp";
 
-function Promo() {
+const Promo: React.FC = () => {
   const images = [
     { image: WinRegistrationImage, alt: "Win a Free Registration" },
     { image: ReducedRegistrationFee, alt: "Reduced Registration Fee" },
@@ -24,6 +24,6 @@ function Promo() {
       ))}
     </main>
   );
-}
+};
 
 export default Promo;

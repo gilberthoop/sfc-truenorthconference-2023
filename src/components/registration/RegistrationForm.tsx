@@ -9,7 +9,7 @@ import { Participant } from "../../utils/types";
 import { REGIONS, AREALIST, MEMBERSHIP_ROLE } from "../../utils/global-values";
 import { sanitizeInput } from "../../utils/input-validation";
 
-function RegistrationForm() {
+const RegistrationForm: React.FC = () => {
   // Form fields
   const initialFormState: Participant = {
     id: Date.now().toString(),
@@ -669,6 +669,6 @@ function RegistrationForm() {
       </form>
     </div>
   );
-}
+};
 
 export default RegistrationForm;

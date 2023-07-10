@@ -3,7 +3,7 @@ import RegistrationStats from "@/components/registration/RegistrationStats";
 import Memo from "./Memo";
 import { InformationProps } from "@/utils/types";
 
-function Introduction() {
+const Introduction: React.FC = () => {
   const contents = [
     {
       title: "Brothers and sisters in Christ",
@@ -30,6 +30,6 @@ function Introduction() {
       <Memo />
     </main>
   );
-}
+};
 
 export default Introduction;

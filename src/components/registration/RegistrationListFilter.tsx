@@ -9,11 +9,11 @@ interface FilterProps {
   onFilterSearch: () => void;
 }
 
-function RegistrationListFilter({
+const RegistrationListFilter: React.FC<FilterProps> = ({
   onFilterChange,
   onFilterClear,
   onFilterSearch,
-}: FilterProps) {
+}) => {
   const regionsOptions = REGIONS.map((region) => region.value);
   // OPTIONALLY, const areasOptions: string[] = AREALIST.flatMap((area) => area);
   const areasOptions: string[] = AREALIST.reduce(
@@ -170,6 +170,6 @@ function RegistrationListFilter({
       </section>
     </main>
   );
-}
+};
 
 export default RegistrationListFilter;
