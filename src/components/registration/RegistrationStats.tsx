@@ -1,27 +1,9 @@
-import axios from "axios";
-import { RegionStats } from "@/utils/types";
-import { useState, useEffect } from "react";
 import { CircularProgress } from "@mui/material";
 import AppBarGraph from "../AppBarGraph";
+import useRegionStats from "@/hooks/use-region-stats";
 
 function RegistrationStats() {
-  const API_ENDPOINT_URL = "/api/statistics";
-  const [regionStats, setRegionStats] = useState<RegionStats[]>();
-
-  async function fetchRegionStats() {
-    try {
-      const response = await axios.get(API_ENDPOINT_URL);
-      const statsResult = response.data?.regionStatistics;
-
-      setRegionStats(statsResult);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchRegionStats();
-  }, []);
+  const { regionStats } = useRegionStats();
 
   return (
     <main className="my-10">
