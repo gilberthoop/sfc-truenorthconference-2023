@@ -557,7 +557,7 @@ function RegistrationForm() {
           </div>
           <div>
             <label htmlFor="shirtSize" className="registration__form-label">
-              Shirt size (Free): *
+              Shirt size (included): *
             </label>
             <select
               name="shirtSize"
