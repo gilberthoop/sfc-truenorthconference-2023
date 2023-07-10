@@ -2,8 +2,8 @@ import { NavigationInfo } from "@/utils/types";
 
 interface AppNavProps {
   menuItems?: NavigationInfo[];
-  ctaTitle: string;
-  onCTAClick: () => void;
+  ctaTitle?: string;
+  onCTAClick?: () => void;
   onExtraCTAclick?: () => void;
   extraCTAtitle?: string;
 }
@@ -33,7 +33,9 @@ function AppNav({
 
   function handleCTAClick(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault();
-    onCTAClick();
+    if (onCTAClick) {
+      onCTAClick();
+    }
   }
 
   function handleExtraCTAClick(event: React.FormEvent<HTMLButtonElement>) {
@@ -70,9 +72,11 @@ function AppNav({
 
   const renderedNavAllDevices = (
     <div className="app-nav--alldevice">
-      <button onClick={handleCTAClick} className="app-nav__cta">
-        {ctaTitle}
-      </button>
+      {ctaTitle && (
+        <button onClick={handleCTAClick} className="app-nav__cta">
+          {ctaTitle}
+        </button>
+      )}
       {extraCTAtitle && (
         <button
           onClick={handleExtraCTAClick}

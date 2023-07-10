@@ -30,9 +30,14 @@ export default function Home() {
 
       <div className="app-header--mobile"></div>
 
-      <AppNav
+      {/* <AppNav
         ctaTitle={"Register"}
         onCTAClick={redirectToRegistration}
+        onExtraCTAclick={redirectToVerification}
+        extraCTAtitle={"Verify Registration"}
+      /> */}
+
+      <AppNav
         onExtraCTAclick={redirectToVerification}
         extraCTAtitle={"Verify Registration"}
       />
@@ -43,7 +48,7 @@ export default function Home() {
         <FAQ />
       </div>
 
-      <AppFooter info="Registration ends July 9!" />
+      <AppFooter info="Registration closed" />
     </main>
   );
 }
