@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import useRedirect from "@/hooks/use-redirect";
 import Head from "next/head";
 import Image from "next/image";
 import PosterImg from "@/assets/poster.jpeg";
@@ -9,14 +9,7 @@ import Promo from "@/components/landing/Promo";
 import AppFooter from "@/components/AppFooter";
 
 export default function Home() {
-  const router = useRouter();
-  function redirectToRegistration() {
-    router.push("/register");
-  }
-
-  function redirectToVerification() {
-    router.push("/verify-registration");
-  }
+  const { redirectToRegistration, redirectToVerification } = useRedirect();
 
   return (
     <main className="min-h-screen">
@@ -30,16 +23,11 @@ export default function Home() {
 
       <div className="app-header--mobile"></div>
 
-      {/* <AppNav
-        ctaTitle={"Register"}
-        onCTAClick={redirectToRegistration}
-        onExtraCTAclick={redirectToVerification}
-        extraCTAtitle={"Verify Registration"}
-      /> */}
-
       <AppNav
-        onExtraCTAclick={redirectToVerification}
-        extraCTAtitle={"Verify Registration"}
+        firstCtaTitle={"Register"}
+        onFirstCTAClick={redirectToRegistration}
+        secondCtaTitle={"Verify Registration"}
+        onSecondCTAclick={redirectToVerification}
       />
 
       <div className="main">
@@ -48,7 +36,7 @@ export default function Home() {
         <FAQ />
       </div>
 
-      <AppFooter info="Registration closed" />
+      <AppFooter info="Registration ends July 23" />
     </main>
   );
 }

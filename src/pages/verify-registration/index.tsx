@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import useRedirect from "@/hooks/use-redirect";
 import Head from "next/head";
 import { CircularProgress } from "@mui/material";
 import { sanitizeInput } from "@/utils/input-validation";
@@ -35,17 +35,19 @@ export default function VerifyRegistration() {
     }
   }
 
-  const router = useRouter();
-  function handleCallToAction() {
-    router.push("/register");
-  }
+  const { redirectToHome, redirectToRegistration } = useRedirect();
 
   return (
     <main>
       <Head>
         <title>SFC Breakthrough | Verify Registration</title>
       </Head>
-      {/* <AppNav ctaTitle={"Register"} onCTAClick={handleCallToAction} /> */}
+      <AppNav
+        firstCtaTitle={"Home"}
+        onFirstCTAClick={redirectToHome}
+        secondCtaTitle={"Register"}
+        onSecondCTAclick={redirectToRegistration}
+      />
       <section className="verification">
         <form onSubmit={checkRegistration} className="verification__form">
           <header className="verification__header text-center">
