@@ -2,87 +2,46 @@ import { NavigationInfo } from "@/utils/types";
 
 interface AppNavProps {
   menuItems?: NavigationInfo[];
-  ctaTitle?: string;
-  onCTAClick?: () => void;
-  onExtraCTAclick?: () => void;
-  extraCTAtitle?: string;
+  firstCtaTitle?: string;
+  onFirstCTAClick?: () => void;
+  secondCtaTitle?: string;
+  onSecondCTAclick?: () => void;
 }
 
 const AppNav: React.FC<AppNavProps> = ({
   menuItems,
-  ctaTitle,
-  onCTAClick,
-  onExtraCTAclick,
-  extraCTAtitle,
+  firstCtaTitle,
+  onFirstCTAClick,
+  secondCtaTitle,
+  onSecondCTAclick,
 }) => {
-  const renderedMenuItems = (
-    <section className="app-nav__menu">
-      {menuItems &&
-        menuItems.map((menuItem, index) => (
-          <a key={index} href={menuItem.href} className="cursor-pointer">
-            {menuItem.name}
-          </a>
-        ))}
-      {extraCTAtitle && (
-        <button onClick={handleExtraCTAClick} className="cursor-pointer">
-          {extraCTAtitle}
-        </button>
-      )}
-    </section>
-  );
-
-  function handleCTAClick(event: React.FormEvent<HTMLButtonElement>) {
+  function handleFirstCTAClick(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault();
-    if (onCTAClick) {
-      onCTAClick();
+    if (onFirstCTAClick) {
+      onFirstCTAClick();
     }
   }
 
-  function handleExtraCTAClick(event: React.FormEvent<HTMLButtonElement>) {
+  function handleSecondCTAClick(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault();
-    if (onExtraCTAclick) {
-      onExtraCTAclick();
+    if (onSecondCTAclick) {
+      onSecondCTAclick();
     }
   }
-
-  const renderedNavDesktop = (
-    <div className="app-nav--desktop">
-      {renderedMenuItems}
-      <button onClick={handleCTAClick} className="app-nav__cta">
-        {ctaTitle}
-      </button>
-    </div>
-  );
-
-  const renderedNavMobile = (
-    <div className="app-nav--mobile">
-      <button onClick={handleCTAClick} className="app-nav__cta">
-        {ctaTitle}
-      </button>
-      {extraCTAtitle && (
-        <button
-          onClick={handleExtraCTAClick}
-          className="cursor-pointer app-nav__cta"
-        >
-          {extraCTAtitle}
-        </button>
-      )}
-    </div>
-  );
 
   const renderedNavAllDevices = (
     <div className="app-nav--alldevice">
-      {ctaTitle && (
-        <button onClick={handleCTAClick} className="app-nav__cta">
-          {ctaTitle}
+      {firstCtaTitle && (
+        <button onClick={handleFirstCTAClick} className="app-nav__cta">
+          {firstCtaTitle}
         </button>
       )}
-      {extraCTAtitle && (
+      {secondCtaTitle && (
         <button
-          onClick={handleExtraCTAClick}
+          onClick={handleSecondCTAClick}
           className="cursor-pointer app-nav__cta"
         >
-          {extraCTAtitle}
+          {secondCtaTitle}
         </button>
       )}
     </div>
