@@ -48,7 +48,7 @@ export default function VerifyRegistration() {
         secondCtaTitle={"Register"}
         onSecondCTAclick={redirectToRegistration}
       />
-      <section className="verification">
+      <section className="verification px-6 sm:px-20 md:px-32 lg:px-0">
         <form onSubmit={checkRegistration} className="verification__form">
           <header className="verification__header text-center">
             <h1 className="text-2xl sm:text-3xl pb-4">

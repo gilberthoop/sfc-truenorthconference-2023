@@ -28,7 +28,7 @@
   background-color: white;
   padding: 30px;
 
-  @apply my-12 shadow-md rounded;
+  @apply my-20 shadow-md rounded;
   @apply sm:mt-8;
 }
 
