@@ -149,7 +149,7 @@
 
 .promo__video-close-btn {
   background-color: #263759;
-  margin-left: -10px;
+  margin-left: -18px;
   z-index: 9;
   @apply rounded-full outline px-2 py-0 text-white text-lg;
 }
