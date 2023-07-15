@@ -1,12 +1,14 @@
 interface FooterProps {
   info: string;
+  onCtaClick?: () => void;
 }
 
-const AppFooter: React.FC<FooterProps> = ({ info }) => {
+const AppFooter: React.FC<FooterProps> = ({ info, onCtaClick }) => {
   return (
     <footer className="app-footer">
-      <div>
-        <h1 className="app-footer__heading">{info}</h1>
+      <div className="app-footer__heading">
+        <h1>{info}</h1>
+        {onCtaClick && <button onClick={onCtaClick}>SFC TNC Video Memo</button>}
       </div>
     </footer>
   );

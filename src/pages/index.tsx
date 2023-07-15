@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useRedirect from "@/hooks/use-redirect";
 import Head from "next/head";
 import Image from "next/image";
@@ -6,10 +7,16 @@ import FAQ from "@/components/landing/FrequentlyAskedQuestions";
 import AppNav from "@/components/AppNav";
 import Introduction from "@/components/landing/Introduction";
 import Promo from "@/components/landing/Promo";
+import MemoVideo from "@/components/landing/MemoVideo";
 import AppFooter from "@/components/AppFooter";
 
 export default function Home() {
+  const [videoVisible, setVideoVisible] = useState(false);
   const { redirectToRegistration, redirectToVerification } = useRedirect();
+
+  function handleVideoVisibility() {
+    setVideoVisible((prevState) => !prevState);
+  }
 
   return (
     <main className="min-h-screen">
@@ -36,7 +43,15 @@ export default function Home() {
         <FAQ />
       </div>
 
-      <AppFooter info="Registration ends July 23" />
+      <MemoVideo
+        visible={videoVisible}
+        toggleVisibility={handleVideoVisibility}
+      />
+
+      <AppFooter
+        info="Registration ends July 23"
+        onCtaClick={handleVideoVisibility}
+      />
     </main>
   );
 }
