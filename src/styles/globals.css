@@ -100,13 +100,23 @@ body {
   color: white;
   background-color: #2593A2;
   backdrop-filter: blur(10px);
-  @apply flex justify-center py-4 sticky bottom-0;
+  @apply py-4 sticky bottom-0;
 }
 
 .app-footer__heading {
   text-transform: uppercase;
   font-weight: 700;
-  @apply text-lg;
+
+  @apply flex flex-col gap-y-3 items-center text-lg px-4;
+  @apply sm:flex-row sm:justify-evenly sm:gap-x-10;
+  @apply md:gap-x-40;
+  @apply lg:px-0;
+}
+
+.app-footer__heading > button {
+  color: #2593A2;
+
+  @apply py-1 px-2 bg-white cursor-pointer rounded;
 }
 
 @media screen and (min-width: 640px) {
