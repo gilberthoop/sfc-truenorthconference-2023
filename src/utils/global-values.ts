@@ -36,6 +36,10 @@ export const MEMBERSHIP_ROLE = [
   "Support Couple Coordinators",
 ];
 
+export const ACCOMMODATION_NEEDS = ["Yes", "No"];
+
+export const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
+
 export const MONTHS = [
   "January",
   "February",

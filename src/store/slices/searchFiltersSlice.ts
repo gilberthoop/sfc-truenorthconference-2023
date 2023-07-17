@@ -2,9 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FilterCriteria } from "@/utils/types";
 
 const initialFilters: FilterCriteria = {
-  region: [],
-  area: [],
-  sfcRole: [],
+  regions: [],
+  areas: [],
+  sfcRoles: [],
+  shirtSizes: [],
+  accommodationsNeeds: [],
 };
 
 const searchFiltersSlice = createSlice({

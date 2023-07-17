@@ -27,9 +27,11 @@ export interface ParticipantsState {
 }
 
 export interface FilterCriteria {
-  region: string[];
-  area: string[];
-  sfcRole: string[];
+  regions: string[];
+  areas: string[];
+  sfcRoles: string[];
+  shirtSizes: string[];
+  accommodationsNeeds: string[];
 }
 
 export interface FAQ {
