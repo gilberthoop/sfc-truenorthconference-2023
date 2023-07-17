@@ -43,22 +43,37 @@ async function searchRegistrations(
   res: NextApiResponse,
   collection: Collection
 ) {
-  const { region, area, sfcRole } = req.query;
+  const { regions, areas, sfcRoles, shirtSizes, accommodationsNeeds } =
+    req.query;
   const searchCriteria: any = {};
 
-  if (region) {
-    const regions = Array.isArray(region) ? region : [region];
-    searchCriteria.region = { $in: regions };
+  if (regions) {
+    const regionsParams = Array.isArray(regions) ? regions : [regions];
+    searchCriteria.region = { $in: regionsParams };
   }
 
-  if (area) {
-    const areas = Array.isArray(area) ? area : [area];
-    searchCriteria.area = { $in: areas };
+  if (areas) {
+    const areasParams = Array.isArray(areas) ? areas : [areas];
+    searchCriteria.area = { $in: areasParams };
   }
 
-  if (sfcRole) {
-    const sfcRoles = Array.isArray(sfcRole) ? sfcRole : [sfcRole];
-    searchCriteria.sfcRole = { $in: sfcRoles };
+  if (sfcRoles) {
+    const sfcRolesParams = Array.isArray(sfcRoles) ? sfcRoles : [sfcRoles];
+    searchCriteria.sfcRole = { $in: sfcRolesParams };
+  }
+
+  if (shirtSizes) {
+    const shirtSizesParams = Array.isArray(shirtSizes)
+      ? shirtSizes
+      : [shirtSizes];
+    searchCriteria.shirtSize = { $in: shirtSizesParams };
+  }
+
+  if (accommodationsNeeds) {
+    const accommodationsNeedsParams = Array.isArray(accommodationsNeeds)
+      ? accommodationsNeeds
+      : [accommodationsNeeds];
+    searchCriteria.accommodationNeeded = { $in: accommodationsNeedsParams };
   }
 
   try {
