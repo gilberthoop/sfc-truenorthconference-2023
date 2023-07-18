@@ -9,6 +9,7 @@ import Introduction from "@/components/landing/Introduction";
 import Promo from "@/components/landing/Promo";
 import MemoVideo from "@/components/landing/MemoVideo";
 import AppFooter from "@/components/AppFooter";
+import AppFooterSecondary from "@/components/AppFooterSecondary";
 
 export default function Home() {
   const [videoVisible, setVideoVisible] = useState(false);
@@ -52,6 +53,7 @@ export default function Home() {
         info="Registration ends July 23"
         onCtaClick={handleVideoVisibility}
       />
+      <AppFooterSecondary />
     </main>
   );
 }
