@@ -98,7 +98,7 @@ body {
 
 .app-footer {
   color: white;
-  background-color: #2593A2;
+  background-color: #324A7A;
   backdrop-filter: blur(10px);
   @apply py-4 sticky bottom-0;
 }
@@ -118,6 +118,18 @@ body {
 
   @apply py-1 px-2 bg-white cursor-pointer rounded;
 }
+
+.app-footer--secondary {
+  background-color: #324A7A;
+  @apply flex flex-col gap-y-1 text-center text-sm text-white pb-4;
+  @apply md:text-base;
+}
+
+.app-footer--secondary__body2 {
+  @apply flex justify-center gap-x-10;
+  @apply md:gap-x-16;
+}
+
 
 @media screen and (min-width: 640px) {
   .app-nav {
