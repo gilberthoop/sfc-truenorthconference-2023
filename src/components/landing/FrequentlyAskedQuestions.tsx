@@ -49,7 +49,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
     {
       question: "Is there a deadline?",
       answers: [
-        "Yes! Registration will be closed on July 9, 2023 at Midnight PST.",
+        "Yes! Registration will be closed on July 23, 2023 at Midnight PST.",
       ],
     },
   ];
