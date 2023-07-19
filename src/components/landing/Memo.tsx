@@ -6,12 +6,12 @@ const Memo: React.FC = () => {
       </h1>
 
       <p className="info__body-paragraph">
-        We are currently just over a month away from the 2023 CFC - SFC True
-        North Conference! We hope you all are excited as we are to be gathered
-        in one place as one SFC Canada.
+        We are currently just less than a month away from the 2023 CFC - SFC
+        True North Conference! We hope you all are excited as we are to be
+        gathered in one place as one SFC Canada.
       </p>
       <p className="info__body-paragraph">
-        Friendly reminder, registration deadline is July 9, 2023 @ 11:59pm PDT!
+        Friendly reminder, registration deadline is July 23, 2023 @ 11:59pm PDT!
         So please register and e-transfer your payment to
         <span className="underline ml-1">cfcsfctnc@gmail.com</span> to be
         counted for this year&apos;s TNC! Please use the security question as
