@@ -50,7 +50,7 @@ export default function Home() {
       />
 
       <AppFooter
-        info="Registration ends July 23"
+        info="Registration is still open"
         onCtaClick={handleVideoVisibility}
       />
       <AppFooterSecondary />
