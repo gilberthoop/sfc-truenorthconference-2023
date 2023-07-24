@@ -46,12 +46,6 @@ const FrequentlyAskedQuestions: React.FC = () => {
         "Please indicate the full name of the registered individual you are paying for in the message box. You will receive a confirmation email within 24 hours once payment is received.",
       ],
     },
-    {
-      question: "Is there a deadline?",
-      answers: [
-        "Yes! Registration will be closed on July 23, 2023 at Midnight PST.",
-      ],
-    },
   ];
 
   return (
