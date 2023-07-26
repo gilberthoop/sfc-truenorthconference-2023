@@ -297,7 +297,8 @@ const RegistrationForm: React.FC = () => {
           </div>
           {formState.region.length !== 0 &&
             formState.region !== "SFC+" &&
-            formState.region !== "Other" && (
+            formState.region !== "Other" &&
+            formState.region !== "United States of America" && (
               <div>
                 <label htmlFor="area" className="registration__form-label">
                   Area:<span className="required"> *</span>
@@ -319,6 +320,22 @@ const RegistrationForm: React.FC = () => {
                 </select>
               </div>
             )}
+          {formState.region === "United States of America" && (
+            <div>
+              <label htmlFor="area" className="registration__form-label">
+                Area:<span className="required"> *</span>
+              </label>
+              <input
+                type="text"
+                name="area"
+                id="area"
+                value={formState.area}
+                onChange={handleInputChange}
+                className="registration__form-input"
+                required
+              />
+            </div>
+          )}
           {formState.region === "SFC+" && (
             <div>
               <label htmlFor="area" className="registration__form-label">

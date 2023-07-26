@@ -7,6 +7,7 @@ export const REGIONS = [
   { text: "Central (MB, SK, NU)", value: "Central (MB, SK, NU)" },
   { text: "Mountain (AB, NWT)", value: "Mountain (AB, NWT)" },
   { text: "Pacific (BC, YT)", value: "Pacific (BC, YT)" },
+  { text: "United States of America", value: "United States of America" },
   { text: "International", value: "International" },
   { text: "I am not SFC", value: "SFC+" },
 ];
