@@ -9,6 +9,7 @@ import "../styles/thankyou.css";
 import "../styles/list.css";
 import "../styles/filter.css";
 import "../styles/landing.css";
+import "../styles/schedule.css";
 
 const outfit = Outfit({
   weight: "400",
