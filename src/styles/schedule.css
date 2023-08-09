@@ -1,5 +1,20 @@
-.schedule {
+.schedule__container {
+  @apply py-14 px-0;
+  @apply sm:px-20;
+  @apply md:px-40;
+  @apply lg:px-60;
+  @apply xl:px-80;
+}
+
+.schedule__container > h1 {
+  @apply pt-8 text-center text-white text-3xl;
+  @apply md:text-5xl;
+}
+
+.schedule__section {
   background-color: #2593A2;
+  @apply flex flex-col my-10;
+  @apply lg:my-16;
 }
 
 .schedule__contents {
@@ -7,6 +22,13 @@
   @apply lg:p-10;
   @apply xl:px-10;
   background-color: #fff;
+}
+
+.schedule__contents > h1 {
+  @apply text-center text-2xl pb-5;
+  @apply sm:text-3xl;
+  @apply md:text-4xl;
+  @apply lg:pb-10;
 }
 
 .schedule__img-div {
@@ -18,4 +40,34 @@
 .schedule__img {
   height: 100%;
   width: 100%;
+}
+
+.schedule__contents-div {
+  @apply flex flex-col items-center gap-y-4;
+}
+
+.schedule__text {
+  @apply flex flex-col items-center gap-y-1 py-3 px-4 w-full rounded outline;
+  @apply md:flex-row md:gap-x-10 md:py-5 md:px-6;
+  @apply lg:gap-x-16 lg:px-12;
+  @apply xl:gap-x-20;
+}
+
+.schedule__text-div:first-child {
+  @apply md:w-1/4;
+}
+
+.schedule__text-div:first-child > h1 {
+  @apply text-center;
+  @apply md:text-right;
+}
+
+.schedule__text-div:last-child {
+  @apply md:w-3/4;
+}
+
+
+.schedule__text-div:last-child > h1 {
+  @apply text-center;
+  @apply md:text-left;
 }
