@@ -23,7 +23,7 @@ const Schedule: React.FC<ScheduleProps> = ({
   imageDetails,
 }) => {
   return (
-    <section className="schedule flex flex-col my-10 lg:my-16">
+    <section className="schedule__section">
       <section>
         <div className="schedule__img-div">
           <Image
@@ -31,24 +31,18 @@ const Schedule: React.FC<ScheduleProps> = ({
             alt={imageDetails.alt}
             className="schedule__img"
           />
-          ;
         </div>
       </section>
       <section className="schedule__contents">
-        <h1 className="text-center text-2xl sm:text-3xl md:text-4xl pb-5 lg:pb-10">
-          {date}
-        </h1>
-        <div className="flex flex-col items-center gap-y-4">
+        <h1>{date}</h1>
+        <div className="schedule__contents-div">
           {timetable.map(({ time, detail }) => (
-            <div
-              key={time}
-              className="p-2 md:py-5 md:px-8 xl:pl-20 w-full md:w-11/12 rounded outline flex flex-col md:flex-row md:gap-x-8 lg:gap-x-10 xl:gap-x-28 gap-y-1"
-            >
-              <div>
-                <h1 className="text-center lg:text-right">{time}</h1>
+            <div key={time} className="schedule__text">
+              <div className="schedule__text-div">
+                <h1>{time}</h1>
               </div>
-              <div>
-                <h1 className="text-center lg:text-left">{detail}</h1>
+              <div className="schedule__text-div">
+                <h1>{detail}</h1>
               </div>
             </div>
           ))}
