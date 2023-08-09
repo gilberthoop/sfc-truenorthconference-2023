@@ -7,6 +7,7 @@ import FAQ from "@/components/landing/FrequentlyAskedQuestions";
 import AppNav from "@/components/AppNav";
 import Introduction from "@/components/landing/Introduction";
 import Promo from "@/components/landing/Promo";
+import ProgramSchedule from "@/components/landing/schedule/ProgramSchedule";
 import MemoVideo from "@/components/landing/MemoVideo";
 import AppFooter from "@/components/AppFooter";
 import AppFooterSecondary from "@/components/AppFooterSecondary";
@@ -39,6 +40,7 @@ export default function Home() {
       />
 
       <div className="main">
+        <ProgramSchedule />
         <Promo />
         <Introduction />
         <FAQ />

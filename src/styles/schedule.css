@@ -1,0 +1,21 @@
+.schedule {
+  background-color: #2593A2;
+}
+
+.schedule__contents {
+  @apply p-5;
+  @apply lg:p-10;
+  @apply xl:px-10;
+  background-color: #fff;
+}
+
+.schedule__img-div {
+  @apply w-full h-48;
+  @apply md:h-72;
+  @apply lg:h-96;
+}
+
+.schedule__img {
+  height: 100%;
+  width: 100%;
+}
