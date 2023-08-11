@@ -33,8 +33,6 @@ export default function Home() {
       <div className="app-header--mobile"></div>
 
       <AppNav
-        firstCtaTitle={"Register"}
-        onFirstCTAClick={redirectToRegistration}
         secondCtaTitle={"Verify Registration"}
         onSecondCTAclick={redirectToVerification}
       />
@@ -51,10 +49,7 @@ export default function Home() {
         toggleVisibility={handleVideoVisibility}
       />
 
-      <AppFooter
-        info="Registration is still open"
-        onCtaClick={handleVideoVisibility}
-      />
+      <AppFooter onCtaClick={handleVideoVisibility} />
       <AppFooterSecondary />
     </main>
   );

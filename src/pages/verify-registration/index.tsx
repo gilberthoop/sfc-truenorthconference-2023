@@ -42,12 +42,7 @@ export default function VerifyRegistration() {
       <Head>
         <title>SFC Breakthrough | Verify Registration</title>
       </Head>
-      <AppNav
-        firstCtaTitle={"Home"}
-        onFirstCTAClick={redirectToHome}
-        secondCtaTitle={"Register"}
-        onSecondCTAclick={redirectToRegistration}
-      />
+      <AppNav firstCtaTitle={"Home"} onFirstCTAClick={redirectToHome} />
       <section className="verification px-6 sm:px-20 md:px-32 lg:px-0">
         <form onSubmit={checkRegistration} className="verification__form">
           <header className="verification__header text-center">
