@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         await searchRegistrations(req, res, collection);
         break;
       case "POST":
-        await submitRegistration(req, res, collection);
+        // await submitRegistration(req, res, collection);
         break;
       case "DELETE":
         await deleteRegistration(req, res, collection);
