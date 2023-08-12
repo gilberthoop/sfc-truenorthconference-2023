@@ -1,24 +1,15 @@
-import { useState } from "react";
 import useRedirect from "@/hooks/use-redirect";
 import Head from "next/head";
 import Image from "next/image";
 import PosterImg from "@/assets/poster.jpeg";
 import FAQ from "@/components/landing/FrequentlyAskedQuestions";
 import AppNav from "@/components/AppNav";
-import Introduction from "@/components/landing/Introduction";
 import Promo from "@/components/landing/Promo";
 import ProgramSchedule from "@/components/landing/schedule/ProgramSchedule";
-import MemoVideo from "@/components/landing/MemoVideo";
-import AppFooter from "@/components/AppFooter";
 import AppFooterSecondary from "@/components/AppFooterSecondary";
 
 export default function Home() {
-  const [videoVisible, setVideoVisible] = useState(false);
-  const { redirectToRegistration, redirectToVerification } = useRedirect();
-
-  function handleVideoVisibility() {
-    setVideoVisible((prevState) => !prevState);
-  }
+  const { redirectToVerification } = useRedirect();
 
   return (
     <main className="min-h-screen">
@@ -40,16 +31,8 @@ export default function Home() {
       <div className="main">
         <ProgramSchedule />
         <Promo />
-        <Introduction />
         <FAQ />
       </div>
-
-      <MemoVideo
-        visible={videoVisible}
-        toggleVisibility={handleVideoVisibility}
-      />
-
-      {/* <AppFooter onCtaClick={handleVideoVisibility} /> */}
       <AppFooterSecondary />
     </main>
   );
