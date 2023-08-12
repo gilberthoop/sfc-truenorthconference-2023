@@ -121,7 +121,7 @@ body {
 
 .app-footer--secondary {
   background-color: #324A7A;
-  @apply flex flex-col gap-y-1 text-center text-sm text-white pb-4;
+  @apply flex flex-col gap-y-1 text-center text-sm text-white py-4;
   @apply md:text-base;
 }
 
