@@ -49,7 +49,7 @@ export default function Home() {
         toggleVisibility={handleVideoVisibility}
       />
 
-      <AppFooter onCtaClick={handleVideoVisibility} />
+      {/* <AppFooter onCtaClick={handleVideoVisibility} /> */}
       <AppFooterSecondary />
     </main>
   );
