@@ -27,7 +27,7 @@ const Introduction: React.FC = () => {
     <main className="introduction__main">
       <RegistrationStats />
       {/* <InformationBody contents={contents} /> */}
-      <Memo />
+      {/* <Memo /> */}
     </main>
   );
 };

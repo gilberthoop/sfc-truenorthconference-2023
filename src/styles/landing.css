@@ -1,7 +1,7 @@
 .introduction__main {
   @apply my-10 text-white;
-  @apply sm:mx-16;
-  @apply lg:mx-40;
+  @apply sm:mx-16 sm:mt-16;
+  @apply lg:mx-40 lg:mt-40;
   @apply xl:mx-60;
 }
 
